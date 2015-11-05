@@ -36,12 +36,37 @@ class admin_index_controller extends CI_Controller
 		if($this->input->post('disapprove'))
 		{
 			$disapprove=$this->input->post('disapprove');
+			$email_id=$this->input->post('email_id');
+			$rname=$this->input->post('rname');
+			$shop_name=$this->input->post('shop_name');
 
 			$disapprove_change_status=array(
 				'status'=>'0'
 				);
 
 			$this->admin_crud_retailer_model->disapprove_retailer_request($disapprove,$disapprove_change_status);
+
+			$this->load->library('email');
+			$this->email->set_newline("\r\n"); 
+
+			$this->email->from('shivanisurat09@gmail.com','Retailer Request');
+			$this->email->to($email_id);
+			$this->email->subject('Retailer Request Related');
+			//$emailbody='<h3> Respected Admin , <br> New Retaier Request is Arrived </h3>';
+
+			$this->email->message('Hello '.$rname." ,"."\n\n".
+				"Good wishes and warm greetings !! "."\n\n".
+				"Sorry to inform you that your ".$shop_name." cannot be registered under Shivani Enterprise !!"."\n\n".
+				"If Any Query ,You Can Reply To This Email Also.."."\n\n\n".
+				"Thanks & Regards ,"."\n\n".
+				"Shivani Enterprise"
+				);
+
+			if($this->email->send())
+				echo "Successfully Sent An Email To <b> Retailer (".$rname.") Who Requested!! </b> <br>";
+			else
+				show_error($this->email->print_debugger())."\n";
+
 
 			redirect('index.php/asms/admin_index_controller/admin_notifications');
 		}

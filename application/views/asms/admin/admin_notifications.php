@@ -17,9 +17,9 @@
 	            	<th>Other Number</th>
 	            	<th>Email Address</th>
 	            	<th>VAT Number </th>
-	            	<th> Vat Date </th>
-	            	<th> CST Number </th>
-	            	<th> CST Date </th>
+	            	<th>Vat Date </th>
+	            	<th>CST Number </th>
+	            	<th>CST Date </th>
 	            	<th>Approved</th>
 	            	<th>Disapproved </th>
          		</tr>
@@ -40,9 +40,10 @@
 	            <td><input type="hidden" name="cst" value="<?php echo $post->cst; ?>"><?php echo $post->cst;?></td>
 	            <td><input type="hidden" name="cst_date" value="<?php echo $post->cst_date; ?>"><?php echo $post->cst_date;?></td>
 	            <td>
-<!-- 	                <input type="hidden" name="approve" value="<?php echo $approve_id=$post->rid; ?>">
-	                <input type="submit" class="btn btn-success" name="<?php echo $approve_id=$post->rid; ?>" value="Approve"
-	                onclick="javascript:window.location='<?php echo base_url() ;?>index.php/asms/admin_index_controller/approve_request('$approve_id')';">  
+				<!-- 	            
+				 <input type="hidden" name="approve" value="<?php echo $approve_id=$post->rid; ?>">
+	             <input type="submit" class="btn btn-success" name="<?php echo $approve_id=$post->rid; ?>" value="Approve"
+	             onclick="javascript:window.location='<?php echo base_url() ;?>index.php/asms/admin_index_controller/approve_request('$approve_id')';">  
 	             -->
 	             <button type="submit" class="btn btn-warning" name="approve" value="<?php echo $approve_id=$post->rid; ?>">Approve</button>             	
 	             </td>
@@ -51,6 +52,7 @@
 	                <!-- <input type="hidden" name="disapprove" value="<?php echo $disapprove_id=$post->rid; ?>"> -->
 	                <!-- <input type="submit" class="btn btn-warning" name="<?php echo $disapprove_id=$post->rid; ?>" value="">  -->
 	                <button type="submit" class="btn btn-warning" name="disapprove" value="<?php echo $disapprove_id=$post->rid; ?>">Disapprove</button>             	
+	                <input type="hidden" name="email_id" value="<?php echo $email_id=$post->email_id; ?>">
                 </td>
 	         </tr>
 	         </form>             
