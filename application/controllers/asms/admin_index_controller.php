@@ -27,7 +27,7 @@ class admin_index_controller extends CI_Controller
 
 	function admin_notifications()
 	{
-		$this->data['posts'] = $this->admin_crud_retailer_model->display_retailer(); // calling Post model method getPosts()   		
+		$this->data['posts'] = $this->admin_crud_retailer_model->display_retailer_request(); // calling Post model method getPosts()   		
    		$this->load->view('/asms/admin/admin_notifications',$this->data,$this->load->view('asms/admin/admin_home_header'));
 	}
 
@@ -36,24 +36,33 @@ class admin_index_controller extends CI_Controller
 		if($this->input->post('disapprove'))
 		{
 			$disapprove=$this->input->post('disapprove');
-		
-			$this->admin_crud_retailer_model->delete_retailer_request($disapprove);
-		
+
+			$disapprove_change_status=array(
+				'status'=>'0'
+				);
+
+			$this->admin_crud_retailer_model->disapprove_retailer_request($disapprove,$disapprove_change_status);
+
 			redirect('index.php/asms/admin_index_controller/admin_notifications');
 		}
 
-		else
-		
+		else if($this->input->post('approve'))
 		{
 			$approve=$this->input->post('approve');
 
+			$approve_change_status=array(
+				'status'=>'1'
+				);
+
+			$shop_name=$this->input->post('shop_name');
 			$r_username=$this->input->post('rname');
+
 			$r_password=$r_username.'@123';
 
 			$retailer_data=array(
 			'rid'=>$this->input->post('approve'),
-			'r_username'=>$r_username,
-			'r_password'=>$r_password,
+			'r_username'=>$shop_name.$r_username,
+			'r_password'=>$shop_name.'@123',
 			'rname'=>$this->input->post('rname'),
 			'shop_name'=>$this->input->post('shop_name'),
 			'shop_address'=>$this->input->post('shop_address'),
@@ -66,15 +75,16 @@ class admin_index_controller extends CI_Controller
 			'cst_date'=>$this->input->post('cst_date')
 			);
 			//print_r($retailer_data);
-			$this->admin_crud_retailer_model->approve_request($retailer_data);
+
+			$this->admin_crud_retailer_model->approve_retailer_request($approve,$approve_change_status,$retailer_data);
 			redirect('index.php/asms/admin_index_controller/admin_notifications');
-			
 		}
-		
 
+		else
+		{
+
+		}
 	}
-
-
 
 	function add_retailer()
 	{
@@ -145,10 +155,10 @@ class admin_index_controller extends CI_Controller
 	function display_retailer()
 	{
 		//$this->load->model->('admin_add_retailer');
-		$this->data['posts'] = $this->admin_crud_retailer_model->display_retailer(); // calling Post model method getPosts()
+		$this->data['posts'] = $this->admin_crud_retailer_model->display_approved_retailer(); // calling Post model method getPosts()
    		$this->load->view('/asms/admin/display_retailer', $this->data,$this->load->view('asms/admin/admin_home_header'));
-
 	}
+
 	function delete_retailer()
 	{
 

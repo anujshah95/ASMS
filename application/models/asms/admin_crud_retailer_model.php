@@ -15,11 +15,21 @@ class admin_crud_retailer_model extends CI_Model
 		}
 	}
 
-	function approve_request($retailer_data)
+	function approve_retailer_request($approve,$approve_change_status,$retailer_data)
 	{
+			$this->db->where('rid',$approve);
+			$this->db->update('tbl_Retailer_Request',$approve_change_status);
 			$this->db->insert('tbl_Retailer_Login',$retailer_data);
 			return $this->db-> affected_rows() > 0;
-			echo mysql_error();	
+			//echo mysql_error();	
+	}
+
+	function disapprove_retailer_request($disapprove,$disapprove_change_status)
+	{
+		$this->db->where('rid', $disapprove); 
+		$this->db->update('tbl_Retailer_Request',$disapprove_change_status);
+  		//$this->db->delete('tbl_Retailer_Request');
+		return $this->db-> affected_rows() > 0;
 	}
 
 	function update_retailer($update_retailer_data)
@@ -37,8 +47,7 @@ class admin_crud_retailer_model extends CI_Model
 		}
 	}
 
-
-	public function update_retailer_s($data)
+	function update_retailer_s($data)
 	{
 		// $data=intval($data);
 		
@@ -53,9 +62,16 @@ class admin_crud_retailer_model extends CI_Model
 		//print_r($query);
 	}
 
-	public function display_retailer()
+	function display_retailer_request()
 	{
+		$this->db->where('status',2);
 		$query=$this->db->get('tbl_Retailer_Request');
+		return $query->result();
+	}
+
+	function display_approved_retailer()
+	{
+		$query=$this->db->get('tbl_Retailer_Login');
 		return $query->result();
 	}
 
@@ -65,14 +81,6 @@ class admin_crud_retailer_model extends CI_Model
   		$this->db->delete('tbl_Retailer_Request');
 		return $this->db-> affected_rows() > 0;
 	}
-
-	function delete_retailer_request($disapprove)
-	{
-		$this->db->where('rid', $disapprove); 
-  		$this->db->delete('tbl_Retailer_Request');
-		return $this->db-> affected_rows() > 0;
-	}
-
 
 	function add_products($add_products_data)
 	{

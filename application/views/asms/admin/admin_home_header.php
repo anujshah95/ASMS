@@ -12,13 +12,13 @@
   <script src="<?php echo base_url(); ?>assets/jquery/core.js"></script>
   <script src="<?php echo base_url(); ?>assets/js/jquery.js"></script>  <!-- jQuery -->
   <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script>  <!-- Bootstrap Core JavaScript -->
- 
-   <!--Google Font API's (Fonts) -->
+ <!--
+   <!--Google Font API's (Fonts) 
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" 
   rel="stylesheet" type="text/css">
   <link href="http://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" 
   rel="stylesheet" type="text/css">
-
+-->
   </header>
 
 <body>
@@ -76,8 +76,10 @@
 
                      <li> <a href="<?php echo base_url(); ?>index.php/asms/admin_index_controller/admin_notifications">
                      <span class="glyphicon glyphicon-bell" aria-hidden="true">
-                     <?php $query=$this->db->get('tbl_Retailer_Request');
-                        echo "(".trim($query->num_rows()).")";
+                     <?php 
+                     $this->db->where('status',2);
+                     $query=$this->db->get('tbl_Retailer_Request');
+                     echo "(".trim($query->num_rows()).")";
                       ?>
                      </span></a></li>
 

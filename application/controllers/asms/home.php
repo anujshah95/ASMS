@@ -92,7 +92,8 @@ class home extends CI_Controller
 		'vat'=>$this->input->post('vat'),
 		'vat_date'=>$this->input->post('vat_date'),
 		'cst'=>$this->input->post('cst'),
-		'cst_date'=>$this->input->post('cst_date')
+		'cst_date'=>$this->input->post('cst_date'),
+		'status'=>'2'
 		);
 		//print_r($retailer_request_data);
 
@@ -102,7 +103,7 @@ class home extends CI_Controller
 		     alert('Thank you for submitting retailer request under Shivani Enterprise .. We will reach you soon..!! ');
 			 window.location.href='index';
 			 </script>";
-		
+	/*
 //-------------------------------------------Email sending to admin (shivanisurat09@gmail.com) from website------------------------------------
 		$rname=$this->input->post('rname');
 		$shop_name=$this->input->post('shop_name');
@@ -168,7 +169,7 @@ class home extends CI_Controller
 			echo "Successfully Sent An Email To : <b>".$rname." (".$email_id_retailer_request.")"."</b>";
 		else
 			show_error($this->email->print_debugger())."\n";
-
+*/
 	}
 
 	function about_us()
