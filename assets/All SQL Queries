@@ -1,0 +1,126 @@
+show create table tablename;
+show create table tbl_Login;
+-----------------------------------------------------------------------------------------------------
+create database asms;
+
+--------------------------------------------1---------------------------------------------------------
+
+CREATE TABLE `tbl_Login` (
+  `lid` int(10) NOT NULL AUTO_INCREMENT,
+  `uname` varchar(10) DEFAULT NULL,
+  `password` varchar(25) DEFAULT NULL,
+  `type` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`lid`)
+) ;
+
+---------------------------------------------2--------------------------------------------------------
+
+ CREATE TABLE `tbl_Retailer_Request` (
+  `rid` int(11) NOT NULL AUTO_INCREMENT,
+  `rname` varchar(20) NOT NULL,
+  `shop_name` varchar(50) NOT NULL,
+  `shop_address` varchar(500) NOT NULL,
+  `contact_number` varchar(10) NOT NULL,
+  `other_number` varchar(10) NOT NULL,
+  `email_id` varchar(25) NOT NULL,
+  `vat` varchar(20) NOT NULL,
+  `vat_date` date NOT NULL,
+  `cst` varchar(20) NOT NULL,
+  `cst_date` date NOT NULL,
+  PRIMARY KEY (`rid`),
+  UNIQUE KEY `shop_address` (`shop_address`),
+  UNIQUE KEY `contact_number` (`contact_number`),
+  UNIQUE KEY `other_number` (`other_number`),
+  UNIQUE KEY `email_id` (`email_id`),
+  UNIQUE KEY `vat` (`vat`),
+  UNIQUE KEY `cst` (`cst`)
+) ;
+
+----------------------------------------------3-------------------------------------------------------
+
+ CREATE TABLE `tbl_Guest_Message` (
+  `name` varchar(20) NOT NULL,
+  `email_id` varchar(25) NOT NULL,
+  `contact_number` varchar(10) NOT NULL,
+  `subject` varchar(25) NOT NULL,
+  `comments` varchar(500) DEFAULT NULL
+);
+
+-----------------------------------------------4------------------------------------------------------
+
+CREATE TABLE `tbl_Retailer_Feedback` (
+  `name` varchar(20) NOT NULL,
+  `email_id` varchar(25) NOT NULL,
+  `category` varchar(30) NOT NULL,
+  `comments` varchar(500) DEFAULT NULL
+);
+
+------------------------------------------------5-----------------------------------------------------
+
+CREATE TABLE `tbl_Retailer_Login` (
+  `rid` int(11) NOT NULL AUTO_INCREMENT,
+  `r_username` varchar(10) NOT NULL,
+  `r_password` varchar(25) NOT NULL,
+  `rname` varchar(20) DEFAULT NULL,
+  `shop_name` varchar(50) DEFAULT NULL,
+  `shop_address` varchar(500) DEFAULT NULL,
+  `contact_number` varchar(10) DEFAULT NULL,
+  `other_number` varchar(10) DEFAULT NULL,
+  `email_id` varchar(25) DEFAULT NULL,
+  `vat` varchar(20) DEFAULT NULL,
+  `vat_date` date DEFAULT NULL,
+  `cst` varchar(20) DEFAULT NULL,
+  `cst_date` date DEFAULT NULL,
+  PRIMARY KEY (`rid`),
+  UNIQUE KEY `r_username` (`r_username`),
+  UNIQUE KEY `shop_address` (`shop_address`),
+  UNIQUE KEY `contact_number` (`contact_number`),
+  UNIQUE KEY `other_number` (`other_number`),
+  UNIQUE KEY `email_id` (`email_id`),
+  UNIQUE KEY `vat` (`vat`),
+  UNIQUE KEY `cst` (`cst`)
+);
+
+-------------------------------------------------6----------------------------------------------------
+
+CREATE TABLE `tbl_Products` (
+  `product_id` int(10) NOT NULL AUTO_INCREMENT,
+  `product_name` varchar(20) DEFAULT NULL,
+  `product_type` varchar(20) DEFAULT NULL,
+  `image_url` longblob,
+  `manufacture_name` varchar(20) DEFAULT NULL,
+  `car_type` varchar(20) DEFAULT NULL,
+  `description` varchar(500) DEFAULT NULL,
+  `price` varchar(10) DEFAULT NULL,
+  `quantity` int(5) DEFAULT NULL,
+  PRIMARY KEY (`product_id`)
+)
+                  
+                  OR
+create table tbl_Products(product_id int(10) primary key AUTO_INCREMENT,product_name varchar(20),product_type varchar(20),image_url longblob,manufacture_name varchar(20),car_type varchar(20),description varchar(500),price varchar(10),quantity int(5));
+
+
+-------------------------------------------------7----------------------------------------------------
+
+CREATE TABLE `tbl_Subscriber` (
+  `sub_id` int(5) NOT NULL AUTO_INCREMENT,
+  `sub_name` varchar(20) NOT NULL,
+  `sub_email` varchar(50) NOT NULL,
+  PRIMARY KEY (`sub_id`),
+  UNIQUE KEY `sub_email` (`sub_email`)
+)
+
+-------------------------------------------------8----------------------------------------------------
+
+
+CREATE TABLE `tbl_Transaction` (
+  `tid` int(11) NOT NULL AUTO_INCREMENT,
+  `rid` int(11) DEFAULT NULL,
+  `products` varchar(1000) DEFAULT NULL,
+  `total` varchar(10) DEFAULT NULL,
+  `purchase_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`tid`)
+) 
+
+
+-------------------------------------------------9----------------------------------------------------

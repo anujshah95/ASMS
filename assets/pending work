@@ -1,0 +1,113 @@
+	Done :
+	
+	thankyou feedback message
+	category null values in feedback form
+	send email from feedback form ..both side
+	retailer request insert data
+	send email to both side
+	home login (retailer / manufacture / admin)
+	invalid detail in login page and redirect to login page only
+	feedback form-- number min 7
+	provide valid details message
+	feedback form -- email proper content
+	improve retailer request email content from both side
+	tbl_Login lid can be null
+	write all sql queries
+	create product table
+	integrate product functionality
+	login problem .. login page blank after clicking close button
+	retailer request popup and backgroud
+	about us page
+	notification(number) problem
+
+
+----------------------------------------------------------------------------
+						Remaining :
+Retailer :
+
+	(Menu :
+	Home (Some Content) ,
+	Products Gallery( with add to cart to retailer) ,
+	Reports(Date wise and product wise)
+	)
+
+	- Edit and view Profile before Header
+	- product funcionality : proper redirect , naming conventions , image url , delete product
+	- Feedback (Same as home)
+	- Change passwordd
+
+
+Owner :
+	(Menu :
+	Home (Some Content) ,
+	Products Gallery (add to cart to manufacture),
+	Products (add products(in db), update & delete products) ,
+	Retailers (View (list of retailers with details) , Create , Delete) ,
+	Manufactures (view (list of MANU with details) , create , delete),
+//	Reports(Retailer wise  Date wise) [which retailer , which product , which date]
+	)
+
+	- Notification part approve / disapprove(feedback , retailerrequest , order , retailer feedback )
+	- Edit and view Profile before Header
+	- Change password
+
+Manufacture :
+	- bad me sochenge
+	
+-------------------------------------
+
+1.	ASMS :
+	-about us proper content
+	-retailer request full functionality with email and assigning email and password
+	-list of all products with image and detail from tbl_Products 
+	-login UI (dropdown of login type bootstrap)
+	-forgot password with email and update in tbl_Login table
+	-home page content , bg in all web pages , SE logo home page , designing like fastticket home page , same home page like fastticket,
+		insert se logo in every page title , home slideshow all company images
+	-session value send to next all pages
+	-feedback and retailer request email in html
+	-login password md5 complusory
+	-asms home header file declare globally
+	-home header navbar-nav font setting : clashes bw home and admin_home page
+	-already registered subscriber error message
+	-retailer request registered email error message
+
+
+2. Admin : 
+	-change pwd
+	-logout..session expire
+	-profile
+	-notification : feedback if possible
+	-reports..proper from table..filter by retailer , products , from and to)..with UI
+	-add retailer model
+	-menu : crud : UI
+	-add and delete products 
+	-products gallery .. and add to cart and send to manufacture..send mail to both side
+	-admin home proper content
+	-offers some exciting offers
+	-feedback to manufacture
+
+3. Retailer :
+	-session
+	-retailer home page content
+	-retailer products gallery : stock maintain : add to cart full functionality : with email and GUI
+	-reports .. from to ..product wise
+	-change pwd
+	-logout..session expire
+	-send some feedback to admin
+	-myfeedback
+	-receives offers if any
+	-deactive account
+
+4. Manufacture
+	-session
+	-change pwd , profile
+	-notifications : receives order from retailers
+	-feedback receives from admin
+
+
+5. Others :
+	documentation
+	check all code.. edit naming conventions and all
+
+
