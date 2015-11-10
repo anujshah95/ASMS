@@ -58,12 +58,14 @@ Manufacture :
 
 1.	ASMS :
 	-about us proper content
-	-retailer request full functionality with email and assigning email and password
-	-list of all products with image and detail from tbl_Products 
-	-login UI (dropdown of login type bootstrap)
-	-forgot password with email and update in tbl_Login table
 	-home page content , bg in all web pages , SE logo home page , designing like fastticket home page , same home page like fastticket,
 		insert se logo in every page title , home slideshow all company images
+	-feedback form proper design
+	-list of all products with image and detail from tbl_Products 
+
+	-retailer request full functionality with email and assigning email and password
+	-login UI (dropdown of login type bootstrap)
+	-forgot password with email and update in tbl_Login table
 	-session value send to next all pages
 	-feedback and retailer request email in html
 	-login password md5 complusory
@@ -71,7 +73,6 @@ Manufacture :
 	-home header navbar-nav font setting : clashes bw home and admin_home page
 	-already registered subscriber error message
 	-retailer request registered email error message
-
 
 2. Admin : 
 	-change pwd

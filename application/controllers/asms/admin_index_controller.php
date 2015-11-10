@@ -46,6 +46,8 @@ class admin_index_controller extends CI_Controller
 
 			$this->admin_crud_retailer_model->disapprove_retailer_request($disapprove,$disapprove_change_status);
 
+			//disapproval mail send to retailer from owner (shivanisurat09@gmail.com)
+			
 			$this->load->library('email');
 			$this->email->set_newline("\r\n"); 
 
@@ -58,7 +60,7 @@ class admin_index_controller extends CI_Controller
 				"Good wishes and warm greetings !! "."\n\n".
 				"Sorry to inform you that your ".$shop_name." cannot be registered under Shivani Enterprise !!"."\n\n".
 				"If Any Query ,You Can Reply To This Email Also.."."\n\n\n".
-				"Thanks & Regards ,"."\n\n".
+				"Thanks & Regards ,"."\n".
 				"Shivani Enterprise"
 				);
 
@@ -66,7 +68,7 @@ class admin_index_controller extends CI_Controller
 				echo "Successfully Sent An Email To <b> Retailer (".$rname.") Who Requested!! </b> <br>";
 			else
 				show_error($this->email->print_debugger())."\n";
-
+			//---------------------------------------------------------------------------------
 
 			redirect('index.php/asms/admin_index_controller/admin_notifications');
 		}
@@ -75,19 +77,29 @@ class admin_index_controller extends CI_Controller
 		{
 			$approve=$this->input->post('approve');
 
+			$email_id=$this->input->post('email_id');
+			$rname=$this->input->post('rname');
+			$shop_name=$this->input->post('shop_name');
+
 			$approve_change_status=array(
 				'status'=>'1'
 				);
 
-			$shop_name=$this->input->post('shop_name');
-			$r_username=$this->input->post('rname');
+			$r_username1=explode(' ',$shop_name);
+			$r_username=$r_username1[0].'_'.$r_username1[1];
 
-			$r_password=$r_username.'@123';
+			function generate_password( $length = 8 ) 
+			{
+				$chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_-=+;:,.?";
+				$password = substr( str_shuffle( $chars ), 0, $length );
+				return $password;	
+			}
+			$r_password=generate_password();
 
 			$retailer_data=array(
 			'rid'=>$this->input->post('approve'),
-			'r_username'=>$shop_name.$r_username,
-			'r_password'=>$shop_name.'@123',
+			'r_username'=>$r_username,
+			'r_password'=>$r_password,
 			'rname'=>$this->input->post('rname'),
 			'shop_name'=>$this->input->post('shop_name'),
 			'shop_address'=>$this->input->post('shop_address'),
@@ -102,7 +114,40 @@ class admin_index_controller extends CI_Controller
 			//print_r($retailer_data);
 
 			$this->admin_crud_retailer_model->approve_retailer_request($approve,$approve_change_status,$retailer_data);
+
+			/* approval request and assigning username and password to retailer
+			   send to retailer from owner (shivanisurat09@gmail.com)
+			*/
+			
+			$this->load->library('email');
+			$this->email->set_newline("\r\n"); 
+
+			$this->email->from('shivanisurat09@gmail.com','Retailer Request');
+			$this->email->to($email_id);
+			$this->email->subject('Retailer Request Related');
+			//$emailbody='<h3> Respected Admin , <br> New Retaier Request is Arrived </h3>';
+
+			$this->email->message('Hello '.$rname." ,"."\n\n".
+				"Good wishes and warm greetings !! "."\n\n".
+				"Congratulations ".$rname." , your retailer request is approved under Shivani Enterprise ."."\n\n".
+				"Here is your Login credentials : "."\n\n".
+				"Username : ".$r_username."\n".
+				"Password : ".$r_password."\n\n".
+				"Now , you can login to our website."."\n\n".
+				"If Any Query ,You Can Reply To This Email Also.."."\n\n\n".
+				"Thanks & Regards ,"."\n".
+				"Shivani Enterprise"
+				);
+
+			if($this->email->send())
+				echo "Successfully Sent An Email To <b> Retailer (".$rname.") Who Requested!! </b> <br>";
+			else
+				show_error($this->email->print_debugger())."\n";
+
+			//---------------------------------------------------------------------------------
+
 			redirect('index.php/asms/admin_index_controller/admin_notifications');
+
 		}
 
 		else
