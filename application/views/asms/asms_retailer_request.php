@@ -15,11 +15,15 @@
 	  <div class="modal-dialog">
 	    <div class="modal-content">
 	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="javascript:window.location='<?php echo base_url() ;?>index.php/asms/home/index';">
+	        <span aria-hidden="true">&times;</span></button>
 	        <h2 class="modal-title" id="myModalLabel" align="center"> Request For Retailership </h2>
 	       	<h4 style="color:red" align="center"> Please Provide Accurate Details, </h4>
 	       	<h4 style="color:red" align="center"> So We Can Verify Your Details... </h4>
-	      </div>
+		      <div style="float:right; font-size: 125%; position: relative; top:-5px">
+	          <a href="<?php echo base_url() ;?>index.php/asms/home/login">Already have an account ? </a>
+		      </div>
+	     </div>
 
 	<form action="<?php echo base_url(); ?>index.php/asms/home/retailer_request1" method="POST" name="retailer_request" >
 		<table width="380" height="200" align="center">

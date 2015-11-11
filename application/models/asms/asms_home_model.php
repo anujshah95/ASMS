@@ -38,6 +38,25 @@ class asms_home_model extends CI_Model
 		//echo mysql_error();
 	}
 	
+	function forgot_password_check_email()
+	{	
+		$this->db->where('email_id',$this->input->post('email_id'));
+
+		$query=$this->db->get('tbl_Login');
+
+		if($query->num_rows==1)
+		{
+			return true;
+		}
+
+	}
+
+	function reset_password_f($reset_password_data,$email_id)
+	{
+		$this->db->where('email_id',$email_id);
+		$this->db->update('tbl_Login',$reset_password_data);
+		echo mysql_error();
+	}
 }
 
 ?>

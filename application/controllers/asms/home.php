@@ -3,9 +3,7 @@
 
 class home extends CI_Controller
 {
-	//public $header_file;
-	//$header_file=$this->load->view('asms/asms_home_header');
-	
+
 	function __construct()
 	{
 		parent::__construct();
@@ -48,7 +46,7 @@ class home extends CI_Controller
 
 			elseif ($type=='retailer')
 			{
-				redirect('index.php/asms/home/retailer/retailer_login');
+				redirect('index.php/asms/retailer_c/retailer_home');
 			}
 
 			else
@@ -268,6 +266,81 @@ class home extends CI_Controller
 			</script>";
 
 
+	}
+
+	function forgot_password()
+	{
+		$this->load->view('/asms/asms_forgot_password',$this->load->view('asms/asms_home_header'));
+	}
+
+	function forgot_password1()
+	{	
+		$this->load->model('/asms/asms_home_model');
+		$email_id=$this->input->post('email_id');
+
+		$query=$this->asms_home_model->forgot_password_check_email();
+
+		if($query)
+		{
+			$email_id=$this->input->post('email_id');
+			$rname=$this->input->post('rname');
+
+			function generate_password( $length = 8 ) 
+			{
+				$chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_-=+;:,.?";
+				$password = substr( str_shuffle( $chars ), 0, $length );
+				return $password;	
+			}
+			$password=generate_password();
+
+			$reset_password_data=array(
+				'password'=>$password
+				);
+			$this->load->model('asms/asms_home_model');
+			$this->asms_home_model->reset_password_f($reset_password_data,$email_id);
+
+			//Reset password mail send to retailer from owner (shivanisurat09@gmail.com)
+			
+			$this->load->library('email');
+			$this->email->set_newline("\r\n"); 
+
+			$this->email->from('shivanisurat09@gmail.com','Reset Password');
+			$this->email->to($email_id);
+			$this->email->subject('Reset Password Related');
+			//$emailbody='<h3> Respected Admin , <br> New Retaier Request is Arrived </h3>';
+
+			$this->email->message('Hello '/*.$rname." ,"*/."\n\n".
+				"Good wishes and warm greetings !! "."\n\n".
+
+				"Congratulations , your password is successfully reset !!"."\n".
+				"Please find your Login Credentials : "."\n\n".
+				"New Password : ".$password."\n\n".
+				"You can change this password after login to you"."\n\n".
+				"If any query ,You can reply to this email also.."."\n\n\n".
+				"Thanks & Regards ,"."\n".
+				"Shivani Enterprise"
+				);
+
+			if($this->email->send())
+				echo "Successfully Sent An Email To <b> Retailer (".$rname.") Who Requested!! </b> <br>";
+			else
+				show_error($this->email->print_debugger())."\n";
+			//---------------------------------------------------------------------------------
+			echo "<script>
+			     	alert('Your password is reset , kindly get your password from your registered email address..!! ');
+				 	window.location.href='login'; 
+				 </script>";
+
+			//redirect('index.php/asms/home/login');
+		}
+
+		else
+		{
+			echo "<script>
+			alert('We are sorry .. This Email address is not registered with our website!! ');
+			window.location.href='forgot_password'; 
+			</script>";
+		}
 	}
 }
 ?>

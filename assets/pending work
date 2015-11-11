@@ -19,6 +19,9 @@
 	retailer request popup and backgroud
 	about us page
 	notification(number) problem
+	retailer request full functionality with email and assigning email and password
+	login UI (dropdown of login type bootstrap)
+
 
 
 ----------------------------------------------------------------------------
@@ -62,12 +65,12 @@ Manufacture :
 		insert se logo in every page title , home slideshow all company images
 	-feedback form proper design
 	-list of all products with image and detail from tbl_Products 
+	-tbl_Retailer_Request related .... once retailer request is rejected .. how can he request again because mail already save in db	
+	-feedback and retailer request email in html
+	-email validator API
 
-	-retailer request full functionality with email and assigning email and password
-	-login UI (dropdown of login type bootstrap)
 	-forgot password with email and update in tbl_Login table
 	-session value send to next all pages
-	-feedback and retailer request email in html
 	-login password md5 complusory
 	-asms home header file declare globally
 	-home header navbar-nav font setting : clashes bw home and admin_home page
@@ -87,6 +90,7 @@ Manufacture :
 	-admin home proper content
 	-offers some exciting offers
 	-feedback to manufacture
+	-if retailer delete .. automatically record should delete from tbl_Login with respective rid
 
 3. Retailer :
 	-session

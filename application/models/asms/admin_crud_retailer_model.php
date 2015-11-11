@@ -19,7 +19,7 @@ class admin_crud_retailer_model extends CI_Model
 	{
 			$this->db->where('rid',$approve);
 			$this->db->update('tbl_Retailer_Request',$approve_change_status);
-			$this->db->insert('tbl_Retailer_Login',$retailer_data);
+			$this->db->insert('tbl_Login',$retailer_data);
 			return $this->db-> affected_rows() > 0;
 			//echo mysql_error();	
 	}

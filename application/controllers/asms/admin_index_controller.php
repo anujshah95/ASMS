@@ -98,18 +98,10 @@ class admin_index_controller extends CI_Controller
 
 			$retailer_data=array(
 			'rid'=>$this->input->post('approve'),
-			'r_username'=>$r_username,
-			'r_password'=>$r_password,
-			'rname'=>$this->input->post('rname'),
-			'shop_name'=>$this->input->post('shop_name'),
-			'shop_address'=>$this->input->post('shop_address'),
-			'contact_number'=>$this->input->post('contact_number'),
-			'other_number'=>$this->input->post('other_number'),
-			'email_id'=>$this->input->post('email_id'),
-			'vat'=>$this->input->post('vat'),
-			'vat_date'=>$this->input->post('vat_date'),
-			'cst'=>$this->input->post('cst'),
-			'cst_date'=>$this->input->post('cst_date')
+			'uname'=>$r_username,
+			'password'=>$r_password,
+			'email_id'=>$email_id,
+			'type'=>'retailer'
 			);
 			//print_r($retailer_data);
 
