@@ -94,6 +94,7 @@ class admin_index_controller extends CI_Controller
 				$password = substr( str_shuffle( $chars ), 0, $length );
 				return $password;	
 			}
+			
 			$r_password=generate_password();
 
 			$retailer_data=array(

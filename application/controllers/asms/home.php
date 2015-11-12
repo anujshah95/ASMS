@@ -4,9 +4,15 @@
 class home extends CI_Controller
 {
 
-	function __construct()
+	/*function __construct()
 	{
 		parent::__construct();
+	}*/
+
+	function __construct() 
+	{
+	    parent::__construct(); //check login, redirect if logged in or logging out
+	    $this->clear_cache(); //runs if not logging out or logged in
 	}
 
 	function index()
@@ -21,6 +27,7 @@ class home extends CI_Controller
 
 	function login1()
 	{
+
 		$this->load->model('/asms/asms_home_model');
 		$type=$this->input->post('login_type');
 		$query=$this->asms_home_model->asms_login_model_f();
@@ -32,8 +39,8 @@ class home extends CI_Controller
 			'is_logged_in'=>true
 			);
 
-		$this->session->set_userdata($login_data);
-			
+			$this->session->set_userdata('session_data',$login_data); // Sets the session
+
 			if($type=='admin')
 			{
 				redirect('index.php/asms/admin_index_controller/admin_home');
@@ -57,11 +64,40 @@ class home extends CI_Controller
 		}
 		else
 			{
-				echo "<script>
-			     alert('Invalid Username or Password..!! ');
-				 window.location.href='login'; 
+				/*echo 
+				"<script>
+			     	alert('Invalid Username or Password..!! ');
+				 	window.location.href='login'; 
 				 </script>";
+				*/
+				 $data['value']='login_error';
+				 $this->load->view('asms/asms_sweet_alert',$data,$this->load->view('asms/asms_home_header'));
 			}
+	}
+
+   function clear_cache()
+    {
+        $this->output->set_header("Cache-Control: no-store, no-cache, must-revalidate, no-transform, max-age=0, post-check=0, pre-check=0");
+        $this->output->set_header("Pragma: no-cache");
+    }
+
+	function logout()
+	{
+		//$this->load->view('asms/asms_home.php',$this->load->view('asms/asms_home_header'));
+		
+		$this->session->unset_userdata('session_data');
+		$this->session->sess_destroy();
+
+		//$this->output->set_header("Cache-Control: no-store, no-cache, must-revalidate, no-transform, max-age=0, post-check=0, pre-check=0");
+        //$this->output->set_header("Pragma: no-cache");
+
+		$this->output->set_header('Last-Modified:'.gmdate('D, d M Y H:i:s').'GMT');
+		$this->output->set_header('Cache-Control: no-store, no-cache, must-revalidate');
+		$this->output->set_header('Cache-Control: post-check=0, pre-check=0',false);
+		$this->output->set_header('Pragma: no-cache');
+
+       	redirect('index.php/asms/home/index','refresh');
+		
 	}
 
 	function products()
@@ -97,10 +133,14 @@ class home extends CI_Controller
 
 		$this->asms_home_model->retailer_request_f($retailer_request_data);
 
-		echo "<script>
+		/*echo "<script>
 		     alert('Thank you for submitting retailer request under Shivani Enterprise .. We will reach you soon..!! ');
 			 window.location.href='index';
 			 </script>";
+		*/
+		$data['value']='retailer_request_success';
+		$this->load->view('asms/asms_sweet_alert',$data,$this->load->view('asms/asms_home_header'));
+
 	
 //-------------------------------------------Email sending to admin (shivanisurat09@gmail.com) from website------------------------------------
 		$rname=$this->input->post('rname');
@@ -197,11 +237,15 @@ class home extends CI_Controller
 
 		$this->asms_home_model->guest_feedback_f($guest_feedback_data);
 		//redirect("index.php/asms/home/index");
-
+		/*
 		echo "<script>
 		     alert('Thank you for submitting feedback .. We will reach you soon..!! ');
 			 window.location.href='index'; 
 			 </script>";
+		*/
+		$data['value']='feedback_msg';
+		$this->load->view('asms/asms_sweet_alert',$data,$this->load->view('asms/asms_home_header'));
+
 //-------------------------------------------Email sending to admin (shivanisurat09@gmail.com) from guest------------------------------------
 		$name1=$this->input->post('name1');
 		$from_emailid=$this->input->post('email1');
@@ -326,20 +370,29 @@ class home extends CI_Controller
 			else
 				show_error($this->email->print_debugger())."\n";
 			//---------------------------------------------------------------------------------
+			/*
 			echo "<script>
 			     	alert('Your password is reset , kindly get your password from your registered email address..!! ');
 				 	window.location.href='login'; 
 				 </script>";
+			*/
+			$data['value']='forgot_password_success';
+			$this->load->view('asms/asms_sweet_alert',$data,$this->load->view('asms/asms_home_header'));
+
 
 			//redirect('index.php/asms/home/login');
 		}
 
 		else
 		{
-			echo "<script>
+		/*	echo "<script>
 			alert('We are sorry .. This Email address is not registered with our website!! ');
 			window.location.href='forgot_password'; 
 			</script>";
+		*/
+		$data['value']='forgot_password_error';
+		$this->load->view('asms/asms_sweet_alert',$data,$this->load->view('asms/asms_home_header'));
+
 		}
 	}
 }

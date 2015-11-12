@@ -14,6 +14,7 @@ class admin_search_by_date_model extends CI_Model
 		$this->db->where('tbl_Transaction.purchase_date >=', $from);
 		$this->db->where('tbl_Transaction.purchase_date <=', $to);
 		$this->db->or_where('tbl_Retailer_Login.shop_name =',$this->input->post('shop_name'));
+		
 		$result=$this->db->get();
 		if($result->num_rows >0)
         {

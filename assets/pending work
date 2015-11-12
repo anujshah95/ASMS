@@ -21,61 +21,36 @@
 	notification(number) problem
 	retailer request full functionality with email and assigning email and password
 	login UI (dropdown of login type bootstrap)
+	session value send to next all pages'
+	add sweet alert javascript framework
+
 
 
 
 ----------------------------------------------------------------------------
 						Remaining :
-Retailer :
-
-	(Menu :
-	Home (Some Content) ,
-	Products Gallery( with add to cart to retailer) ,
-	Reports(Date wise and product wise)
-	)
-
-	- Edit and view Profile before Header
-	- product funcionality : proper redirect , naming conventions , image url , delete product
-	- Feedback (Same as home)
-	- Change passwordd
-
-
-Owner :
-	(Menu :
-	Home (Some Content) ,
-	Products Gallery (add to cart to manufacture),
-	Products (add products(in db), update & delete products) ,
-	Retailers (View (list of retailers with details) , Create , Delete) ,
-	Manufactures (view (list of MANU with details) , create , delete),
-//	Reports(Retailer wise  Date wise) [which retailer , which product , which date]
-	)
-
-	- Notification part approve / disapprove(feedback , retailerrequest , order , retailer feedback )
-	- Edit and view Profile before Header
-	- Change password
-
-Manufacture :
-	- bad me sochenge
-	
--------------------------------------
 
 1.	ASMS :
 	-about us proper content
 	-home page content , bg in all web pages , SE logo home page , designing like fastticket home page , same home page like fastticket,
 		insert se logo in every page title , home slideshow all company images
-	-feedback form proper design
 	-list of all products with image and detail from tbl_Products 
-	-tbl_Retailer_Request related .... once retailer request is rejected .. how can he request again because mail already save in db	
-	-feedback and retailer request email in html
 	-email validator API
+	-Catptcha code
+
+	-session destroy..previous page redirect problem
 
 	-forgot password with email and update in tbl_Login table
-	-session value send to next all pages
+	-retrieve retailer name / manufacture name from their shop name while retrieving value from session
 	-login password md5 complusory
 	-asms home header file declare globally
 	-home header navbar-nav font setting : clashes bw home and admin_home page
 	-already registered subscriber error message
 	-retailer request registered email error message
+	-feedback form proper design
+	-feedback and retailer request email in html
+	-tbl_Retailer_Request related .... once retailer request is rejected .. how can he request again because mail already save in db
+	-Duplicate entry of email id or mobile number .. error message .. sweetalert	
 
 2. Admin : 
 	-change pwd
@@ -91,6 +66,20 @@ Manufacture :
 	-offers some exciting offers
 	-feedback to manufacture
 	-if retailer delete .. automatically record should delete from tbl_Login with respective rid
+	-(Menu :
+	Home (Some Content) ,
+	Products Gallery (add to cart to manufacture),
+	Products (add products(in db), update & delete products) ,
+	Retailers (View (list of retailers with details) , Create , Delete) ,
+	Manufactures (view (list of MANU with details) , create , delete),
+	Reports(Retailer wise  Date wise) [which retailer , which product , which date]
+	)
+	-Notification part approve / disapprove(feedback , retailerrequest , order , retailer feedback )
+	-Edit and view Profile before Header
+	-Change password
+
+
+
 
 3. Retailer :
 	-session
@@ -103,6 +92,16 @@ Manufacture :
 	-myfeedback
 	-receives offers if any
 	-deactive account
+	-Edit and view Profile before Header
+	-product funcionality : proper redirect , naming conventions , image url , delete product
+	-Feedback (Same as home)
+	-Change passwordd
+	-(Menu :
+	Home (Some Content) ,
+	Products Gallery( with add to cart to retailer) ,
+	Reports(Date wise and product wise)
+	)
+
 
 4. Manufacture
 	-session

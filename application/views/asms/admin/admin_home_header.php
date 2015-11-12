@@ -67,9 +67,14 @@
                     <li><a href="#"><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span></a></li>
 
                     <li class="dropdown">
-                      <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Admin <span class="caret"></span></a>
+                      <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                       <?php 
+                          $login_data = $this->session->userdata('session_data'); //Retriving session
+                          echo $login_data['uname']; //Print the logge in username
+                       ?>
+                       <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                          <li><a href="<?php echo base_url(); ?>index.php/asms/home/index"> Logout </a></li>
+                          <li><a href="<?php echo base_url(); ?>index.php/asms/home/logout"> Logout </a></li>
                           <li><a href="<?php echo base_url(); ?>index.php/asms/admin_index_controller/subscriber_message"> Message </a></li>
                         </ul>
                     </li>
