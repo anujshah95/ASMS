@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
  <header>
+ <meta http-equiv="Cache-Control" content="no-cache" />
+
   <title> Admin Panel </title>
   
   <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/asms_css.css"> <!-- CSS For Home Page -->

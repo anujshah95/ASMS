@@ -17,7 +17,21 @@ class admin_index_controller extends CI_Controller
 
 	function admin_home()
 	{
-		$this->load->view('asms/admin/admin_home',$this->load->view('asms/admin/admin_home_header'));
+		$this->output->set_header('Last-Modified:'.gmdate('D, d M Y H:i:s').'GMT');
+		$this->output->set_header('Cache-Control: no-store, no-cache, must-revalidate');
+		$this->output->set_header('Cache-Control: post-check=0, pre-check=0',false);
+		$this->output->set_header('Pragma: no-cache');
+
+		if(($this->session->userdata('session_data')==TRUE))
+		{
+			$this->load->view('asms/admin/admin_home',$this->load->view('asms/admin/admin_home_header'));
+		}
+		else
+		{
+			$data['value']='logout_error';
+			$this->load->view('asms/asms_sweet_alert',$data,$this->load->view('asms/asms_home_header'));
+			//$this->load->view('asms/asms_home.php',$this->load->view('asms/asms_home_header'));
+		}
 	}
 
 	function products_gallery()

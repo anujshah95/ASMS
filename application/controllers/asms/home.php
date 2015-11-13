@@ -83,21 +83,11 @@ class home extends CI_Controller
 
 	function logout()
 	{
-		//$this->load->view('asms/asms_home.php',$this->load->view('asms/asms_home_header'));
-		
+//	    print_r($this->session->userdata('session_data'));
 		$this->session->unset_userdata('session_data');
 		$this->session->sess_destroy();
 
-		//$this->output->set_header("Cache-Control: no-store, no-cache, must-revalidate, no-transform, max-age=0, post-check=0, pre-check=0");
-        //$this->output->set_header("Pragma: no-cache");
-
-		$this->output->set_header('Last-Modified:'.gmdate('D, d M Y H:i:s').'GMT');
-		$this->output->set_header('Cache-Control: no-store, no-cache, must-revalidate');
-		$this->output->set_header('Cache-Control: post-check=0, pre-check=0',false);
-		$this->output->set_header('Pragma: no-cache');
-
-       	redirect('index.php/asms/home/index','refresh');
-		
+       	redirect('index.php/asms/home/index');
 	}
 
 	function products()

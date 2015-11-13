@@ -35,22 +35,23 @@
 	-home page content , bg in all web pages , SE logo home page , designing like fastticket home page , same home page like fastticket,
 		insert se logo in every page title , home slideshow all company images
 	-list of all products with image and detail from tbl_Products 
-	-email validator API
-	-Catptcha code
-
-	-session destroy..previous page redirect problem
-
-	-forgot password with email and update in tbl_Login table
-	-retrieve retailer name / manufacture name from their shop name while retrieving value from session
 	-login password md5 complusory
 	-asms home header file declare globally
-	-home header navbar-nav font setting : clashes bw home and admin_home page
+	
+	-email validator API
+	-Catptcha code
+	-Subscriber full functionality
 	-already registered subscriber error message
+
+	-session destroy..previous page redirect problem
+	-forgot password with email and update in tbl_Login table
+	-retrieve retailer name / manufacture name from their shop name while retrieving value from session
+	-home header navbar-nav font setting : clashes bw home and admin_home page
 	-retailer request registered email error message
 	-feedback form proper design
 	-feedback and retailer request email in html
 	-tbl_Retailer_Request related .... once retailer request is rejected .. how can he request again because mail already save in db
-	-Duplicate entry of email id or mobile number .. error message .. sweetalert	
+	
 
 2. Admin : 
 	-change pwd

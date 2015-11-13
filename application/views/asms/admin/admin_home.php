@@ -2,6 +2,7 @@
 <html>
 
 <head>
+    <meta http-equiv="Cache-Control" content="no-cache" />
 	<title> Automotive Spare Parts Management System </title>	
 </head>
 

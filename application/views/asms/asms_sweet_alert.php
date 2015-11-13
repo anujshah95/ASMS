@@ -11,6 +11,7 @@ var forgot_password='<?php echo $value ?>'
 var forgot_password_success='<?php echo $value ?>'
 var retailer_request_success='<?php echo $value ?>'
 var feedback_msg='<?php echo $value ?>'
+var logout_error='<?php echo $value ?>'
 
 if(login=='login_error')
 {
@@ -85,7 +86,21 @@ if(feedback_msg=='feedback_msg')
 		});
 }
 
+if(logout_error=='logout_error')
+{
+	swal({
+		title: "Oops",
+		text: "<b>You need to login first..!! </b>",
+		type: "error",
+		confirmButtonColor: "red", 
+		closeOnConfirm: false,
+		html:true
+		},
+		function(){
+		    window.location.href = '<?php echo base_url() ;?>index.php/asms/home/login';
+		});
 
+}
 /*
 swal({
   title: "Are you sure?",
