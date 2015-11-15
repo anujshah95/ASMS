@@ -1,4 +1,5 @@
-	Done :
+----------------------------------------------------------------------------
+						Done :
 	
 	thankyou feedback message
 	category null values in feedback form
@@ -22,7 +23,14 @@
 	retailer request full functionality with email and assigning email and password
 	login UI (dropdown of login type bootstrap)
 	session value send to next all pages'
-	add sweet alert javascript framework
+	add sweet alert javascript framework for UI
+	outside model click problem 
+	retailer request registered email error message and redirect to previous page with failes input values
+	reset button problem after setting cookies in input box
+	tbl_Retailer_Request related .... once retailer request is rejected .. how can he request again because mail already save in db
+		(solved it manually..disapproved user will contact owner via email or feedback)
+	feedback form proper design
+
 
 
 
@@ -36,22 +44,21 @@
 		insert se logo in every page title , home slideshow all company images
 	-list of all products with image and detail from tbl_Products 
 	-login password md5 complusory
-	-asms home header file declare globally
+
+	-feedback and retailer request email in html
 	
-	-email validator API
-	-Catptcha code
 	-Subscriber full functionality
 	-already registered subscriber error message
+	
+	-asms home header file declare globally
 
 	-session destroy..previous page redirect problem
-	-forgot password with email and update in tbl_Login table
 	-retrieve retailer name / manufacture name from their shop name while retrieving value from session
-	-home header navbar-nav font setting : clashes bw home and admin_home page
-	-retailer request registered email error message
-	-feedback form proper design
-	-feedback and retailer request email in html
-	-tbl_Retailer_Request related .... once retailer request is rejected .. how can he request again because mail already save in db
-	
+
+	-forgot password with email and update in tbl_Login table
+
+	-email validator API
+	-Catptcha code
 
 2. Admin : 
 	-change pwd

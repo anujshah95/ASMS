@@ -100,6 +100,11 @@ class home extends CI_Controller
 		$this->load->view('asms/asms_retailer_request.php',$this->load->view('asms/asms_home_header'));
 	}
 
+	function retailer_request_error()
+	{
+		$this->load->view('asms/asms_retailer_request_error.php',$this->load->view('asms/asms_home_header'));
+	}
+
 	function retailer_request1()
 	{
 //-------------------------------------------Insert Retailer Request data to tbl_Retailer_Request--------------------------------------------
@@ -121,16 +126,29 @@ class home extends CI_Controller
 		);
 		//print_r($retailer_request_data);
 
+		setcookie("rname",$this->input->post('rname'), time()+3600);
+		setcookie("shop_name",$this->input->post('shop_name'), time()+3600);
+		setcookie("shop_address",$this->input->post('shop_address'), time()+3600);
+		setcookie("contact_number",$this->input->post('contact_number'), time()+3600);
+		setcookie("other_number",$this->input->post('other_number'), time()+3600);
+		setcookie("email_id",$this->input->post('email_id'), time()+3600);
+		setcookie("vat",$this->input->post('vat'), time()+3600);
+		setcookie("vat_date",$this->input->post('vat_date'), time()+3600);
+		setcookie("cst",$this->input->post('cst_date'), time()+3600);
+		setcookie("cst_date",$this->input->post('cst_date'), time()+3600);
+
+
 		$this->asms_home_model->retailer_request_f($retailer_request_data);
+	
+	//	setcookie("rname","", time()-3600);
+
 
 		/*echo "<script>
 		     alert('Thank you for submitting retailer request under Shivani Enterprise .. We will reach you soon..!! ');
 			 window.location.href='index';
 			 </script>";
 		*/
-		$data['value']='retailer_request_success';
-		$this->load->view('asms/asms_sweet_alert',$data,$this->load->view('asms/asms_home_header'));
-
+/*
 	
 //-------------------------------------------Email sending to admin (shivanisurat09@gmail.com) from website------------------------------------
 		$rname=$this->input->post('rname');
@@ -196,7 +214,7 @@ class home extends CI_Controller
 		if($this->email->send())
 			echo "Successfully Sent An Email To : <b>".$rname." (".$email_id_retailer_request.")"."</b>";
 		else
-			show_error($this->email->print_debugger())."\n";
+			show_error($this->email->print_debugger())."\n";*/
 
 	}
 
@@ -349,7 +367,7 @@ class home extends CI_Controller
 				"Congratulations , your password is successfully reset !!"."\n".
 				"Please find your Login Credentials : "."\n\n".
 				"New Password : ".$password."\n\n".
-				"You can change this password after login to you"."\n\n".
+				"You can change this password after login .."."\n\n".
 				"If any query ,You can reply to this email also.."."\n\n\n".
 				"Thanks & Regards ,"."\n".
 				"Shivani Enterprise"

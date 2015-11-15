@@ -2,37 +2,27 @@
 <html>
 	<head>
 		<title> Retailer Request Form </title>
-	</head>
-  
-	<script type="text/javaScript">
+		
+		<script type="text/javascript">
+
 	  	$(document).ready(function (){
     	$('#myModal').modal('show');
+
   		});
-	</script>
 
-<?php
-		unset($_COOKIE['rname']);
-		unset($_COOKIE['shop_name']);
-		unset($_COOKIE['shop_address']);
-		unset($_COOKIE['contact_number']);
-		unset($_COOKIE['other_number']);
-		unset($_COOKIE['email_id']);
-		unset($_COOKIE['vat']);
-		unset($_COOKIE['vat_date']);
-		unset($_COOKIE['cst']);
-		unset($_COOKIE['cst_date']);						
-		/*setcookie("rname","", time()-3600);
-		setcookie("shop_name","", time()-3600);
-		setcookie("shop_address","", time()-3600);
-		setcookie("contact_number","", time()-3600);
-		setcookie("other_number","", time()-3600);
-		setcookie("email_id","", time()-3600);
-		setcookie("vat","", time()-3600);
-		setcookie("vat_date","", time()-3600);
-		setcookie("cst","", time()-3600);
-		setcookie("cst_date","", time()-3600);*/
+ 	function clearValues()
+ 	{
+ 		 $(document).ready(function (){
+    	 	$('input[type=text],input[type=textarea],input[type=number],input[type=date],input[type=email],input[type=tel]').each(function() {
+		 		$(this).val('');});});
+		 	/*$('input[type=textarea]').each(function() {
+		 		$(this).val('');});*/	
+		    //$('#rname').val('');}); //rname is textbox id
+ 	}
 
-?>
+		</script>
+
+	</head>
 
 <body>
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-keyboard="false" data-backdrop="static" aria-hidden="true">
@@ -53,59 +43,60 @@
 		<table width="380" height="200" align="center">
 	    	<tr>
 	    		<td><h4><b> Name :</b></h4></td> 
-	    		<td align="center"> <input type="text" name="rname" required><br></td>
+	    		<td align="center"> <input type="text" id="rname" name="rname" 
+	    		value="<?php if(isset($_COOKIE['rname'])) echo ($_COOKIE['rname']); ?>" required><br></td>
 			</tr>
 		
 			<tr>
         		<td><h4><b>Shop Name : </b></h4></td>
-		        <td align="center"><input type="text" name="shop_name" required><br></td>
+		        <td align="center"><input type="text" name="shop_name" value="<?php if(isset($_COOKIE['shop_name'])) echo ($_COOKIE['shop_name']); ?>" required><br></td>
 			</tr>
 
 			<tr>
         		<td><h4><b>Shop Address : </b></h4></td>
-		        <td align="center"><input type="textarea" name="shop_address" required><br></td>
+		        <td align="center"><input type="textarea" name="shop_address" value="<?php if(isset($_COOKIE['shop_address'])) echo ($_COOKIE['shop_address']); ?>" required><br></td>
 			</tr>
 
 			<tr>
         		<td><h4><b>Contact Number : </b></h4></td>
 		        <td align="center"><input type="tel" name="contact_number" pattern="[7-9]{1}[0-9]{9}" 
-		        title="Please Enter Corrent Mobile Number" required><br></td>
+		        title="Please Enter Corrent Mobile Number" value="<?php if(isset($_COOKIE['contact_number'])) echo ($_COOKIE['contact_number']); ?>" required><br></td>
 			</tr>
 
 			<tr>
         		<td><h4><b>Other Number : </b></h4></td>
-		        <td align="center"><input type="number" name="other_number" required><br></td>
+		        <td align="center"><input type="number" name="other_number" value="<?php if(isset($_COOKIE['other_number'])) echo ($_COOKIE['other_number']); ?>" required><br></td>
 			</tr>
 			
 			<tr>
         		<td><h4><b>Email Adress : </b></h4></td>
-		        <td align="center"><input type="email" name="email_id" required><br></td>
+		        <td align="center"><input type="email" name="email_id" value="<?php if(isset($_COOKIE['email_id'])) echo ($_COOKIE['email_id']); ?>" required><br></td>
 			</tr>
 			
 			<tr>
         		<td><h4><b>Vat Number : </b></h4></td>
-		        <td align="center"><input type="text" name="vat" required></td>
+		        <td align="center"><input type="text" name="vat" value="<?php if(isset($_COOKIE['vat'])) echo ($_COOKIE['vat']); ?>" required></td>
 			</tr>
 			
 			<tr>
         		<td><h4><b>Vat  Date : </b></h4></td>
-		        <td align="center"><input type="date" name="vat_date" style="width:180px" required><br></td>
+		        <td align="center"><input type="date" name="vat_date" style="width:180px" value="<?php if(isset($_COOKIE['vat_date'])) echo ($_COOKIE['vat_date']); ?>" required><br></td>
 			</tr>
 			
 			<tr>
         		<td><h4><b>Cst Number : </b></h4></td>
-		        <td align="center"><input type="text" name="cst" required><br></td>
+		        <td align="center"><input type="text" name="cst" value="<?php if(isset($_COOKIE['cst'])) echo ($_COOKIE['cst']); ?>" required><br></td>
 			</tr>
 			
 			<tr>
         		<td><h4><b>Cst  Date : </b></h4></td>
-		        <td align="center"><input type="date" name="cst_date" style="width:180px" required><br></td>
+		        <td align="center"><input type="date" name="cst_date" style="width:180px" value="<?php if(isset($_COOKIE['cst_date'])) echo ($_COOKIE['cst_date']); ?>" required><br></td>
 			</tr>
   		</table>
   			
    		<br><div align="center">
             <input class="btn btn-success" type="submit" name="submit" id="submit" value="Submit" />
-            <input class="btn btn-danger" type="reset" value="Reset" />
+            <input class="btn btn-danger" type="button" value="Reset" onclick="clearValues();" />
             <input class="btn btn-default" type="button" data-dismiss="modal" value="Close" 
             onclick="javascript:window.location='<?php echo base_url() ;?>index.php/asms/home/index';">
     	</div>

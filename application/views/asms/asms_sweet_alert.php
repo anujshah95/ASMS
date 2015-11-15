@@ -12,15 +12,17 @@ var forgot_password_success='<?php echo $value ?>'
 var retailer_request_success='<?php echo $value ?>'
 var feedback_msg='<?php echo $value ?>'
 var logout_error='<?php echo $value ?>'
+var retailer_request_error='<?php echo $value ?>'
 
 if(login=='login_error')
 {
 		swal({
 		  title: "Oops",
-		  text: "Incorrect Username or Password",
+		  text: "<b>Incorrect Username or Password</b>",
 		  type: "error",
 		  confirmButtonColor: "#DD6B55",
-		  closeOnConfirm: false
+		  closeOnConfirm: false,
+		  html:true
 		},
 		function(){
 		    window.location.href = '<?php echo base_url() ;?>index.php/asms/home/login';
@@ -31,10 +33,11 @@ if(forgot_password=='forgot_password_error')
 {
 		swal({
 		  title: "Oops",
-		  text: "We are sorry .. This Email address is not registered with our website!!",
+		  text: "<b>We are sorry .. This Email address is not registered with our website !! </b>",
 		  type: "error",
 		  confirmButtonColor: "#DD6B55",
-		  closeOnConfirm: false
+		  closeOnConfirm: false,
+		  html:true
 		},
 		function(){
 		    window.location.href = '<?php echo base_url() ;?>index.php/asms/home/forgot_password';
@@ -75,7 +78,7 @@ if(feedback_msg=='feedback_msg')
 {
 		swal({
 		  title: "Done",
-		  text: "<b>Thank you for submitting feedback .. We will reach you soon..!! </b>",
+		  text: "<b>Thank you for submitting feedback ..<br> We will reach you soon..!! </b>",
 		  type: "success",
 		  confirmButtonColor: "#4F8A10", 
 		  closeOnConfirm: false,
@@ -101,6 +104,24 @@ if(logout_error=='logout_error')
 		});
 
 }
+
+if(retailer_request_error=='retailer_request_error')
+{
+	swal({
+		title: "Oops",
+		text: "<b>Sorry , Duplicate Entry Found..!! <br><br> If any query please write feedback from our home page !! </b>",
+		type: "error",
+		confirmButtonColor: "red", 
+		closeOnConfirm: false,
+		html:true
+		},
+		function(){
+			//redirect('<?php echo base_url() ;?>index.php/asms/home/retailer_request','refresh');
+		    window.location.href = '<?php echo base_url() ;?>index.php/asms/home/retailer_request_error';
+		});
+}
+
+
 /*
 swal({
   title: "Are you sure?",

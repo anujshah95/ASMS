@@ -7,13 +7,25 @@ class asms_home_model extends CI_Model
 	{
 		$this->db->insert('tbl_Guest_Message',$guest_feedback_data);
 		echo mysql_error();
-
 	}
 
 
 	function retailer_request_f($retailer_request_data)
 	{
-		$this->db->insert('tbl_Retailer_Request',$retailer_request_data);
+		if(!$this->db->insert('tbl_Retailer_Request',$retailer_request_data))
+		{
+			$data['value']='retailer_request_error';
+			$this->load->view('asms/asms_sweet_alert',$data,$this->load->view('asms/asms_home_header'));
+			
+		}
+
+		else
+		{
+			$data['value']='retailer_request_success';
+			$this->load->view('asms/asms_sweet_alert',$data,$this->load->view('asms/asms_home_header'));
+		}
+
+		echo "<br>";
 		echo mysql_error();
 	}
 

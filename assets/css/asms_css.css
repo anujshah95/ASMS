@@ -18,30 +18,29 @@
 .feedback .form
 {
 	text-align:center;
-	height:470px;
+	height:500px;
 	width:450px;
 	border:3px solid #000;
 	background:grey;
 	padding:10px;
-	display: none;
+	display:none;
 	z-index: 2000;
+
+    border: 1px solid rgba(0,0,0,.2);
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    background: rgba(0, 0, 0, 0.7); 
+    -moz-box-shadow: 0 0 13px 3px rgba(0,0,0,.5);
+    -webkit-box-shadow: 0 0 13px 3px rgba(0,0,0,.5);
+    box-shadow: 0 0 13px 3px rgba(0,0,0,.5);
+    overflow: hidden; 
 }
 
-.feedback .btn1
-{
-	/*background-color:orange;*/
-	-moz-border-radius:28px;
-	-webkit-border-radius:28px;
-	border:3px solid;
-	display:inline-block;
-	cursor:pointer;
-	font-family:Comic;
-	font-size:17px;
-	padding:7px 15px;
-	width: 120px;
-}
-
-.span
+input,textarea,select
 {
 	text-align:center;
 	font-size:16px;
@@ -54,19 +53,29 @@
  	font-style:none;
  	font-weight:normal; 
  	font-family:monospace;
- 	background-color:white;
+ 	width: 350px;
 }
+
+input[type=submit],input[type=cancel],input[type=reset]
+{
+ 	width: 100px;
+}
+
+input.name{
+	background:white url("http://localhost/ci/assets/images/icons/user.png") no-repeat 10px 8px;
+}
+
+input.email{
+	background:white url("http://localhost/ci/assets/images/icons/email.png") no-repeat 10px 8px;
+}
+
+input.contact{
+	background:white url("http://localhost/ci/assets/images/icons/contact.png") no-repeat 10px 8px;
+}
+
+textarea.message{
+	background:white url("http://localhost/ci/assets/images/icons/message.png") no-repeat 10px 8px;
+}
+
 
 .span:focus { outline:none; } 
-
-
-.feedback .form_message
-{
-	text-align:center;
-	height:340px;
-	width:500px;
-	border:3px solid #000;
-	background:grey;
-	padding:10px;
-	display: none;
-}

@@ -28,7 +28,7 @@
 			<td>Total</td>
 			<td>Purchase Date</td>
 		</tr>
-		<?php foreach($products as $searchs):?>
+		<?php foreach($products as $searchs): ?>
 			<tr class="active">
 				<td><?php echo $searchs->tid;?></td>
 				<td><?php echo $searchs->rname;?></td>
