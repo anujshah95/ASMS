@@ -13,6 +13,14 @@ var retailer_request_success='<?php echo $value ?>'
 var feedback_msg='<?php echo $value ?>'
 var logout_error='<?php echo $value ?>'
 var retailer_request_error='<?php echo $value ?>'
+var subscriber_error='<?php echo $value; ?>'
+var subscriber_success='<?php echo $value; ?>'
+var delete_subscriber='<?php echo $value; ?>'
+var sendmail_to_all_subscriber='<?php echo $value; ?>'
+/*
+var approved_message='<?php echo value; ?>'
+var approved_retailer_shop_name='<?php echo approved_retailer_shop_name ?>'
+*/
 
 if(login=='login_error')
 {
@@ -120,6 +128,93 @@ if(retailer_request_error=='retailer_request_error')
 		    window.location.href = '<?php echo base_url() ;?>index.php/asms/home/retailer_request_error';
 		});
 }
+
+if(subscriber_error=='subscriber_error')
+{
+	swal({
+		title: "Oops",
+		text: "<b>Sorry , Email Id is already registered..!! <br><br> If any query please write feedback from our home page !! </b>",
+		type: "error",
+		confirmButtonColor: "red", 
+		closeOnConfirm: false,
+		html:true
+		},
+		function(){
+			//redirect('<?php echo base_url() ;?>index.php/asms/home/retailer_request','refresh');
+		    window.location.href = '<?php echo base_url() ;?>index.php/asms/home';
+		});
+}
+
+if(subscriber_success=='subscriber_success')
+{
+	swal({
+		title: "Done",
+		text: "<b>You are now subscribed !! <br><br> Now , you will get latest news & information <br>of our website !! </b>",
+		type: "success",
+		confirmButtonColor: "#4F8A10", 
+		closeOnConfirm: false,
+		html:true
+		},
+		function(){
+			//redirect('<?php echo base_url() ;?>index.php/asms/home/retailer_request','refresh');
+		    window.location.href = '<?php echo base_url() ;?>index.php/asms/home';
+		});
+}
+
+
+//-----------------------------------------Admin -----------------------------------------------------------------------
+
+if(delete_subscriber=='delete_subscriber')
+{
+	swal({
+		title: "Done",
+		text: "<b>Successfully Deleted Subscriber !! </b>",
+		type: "success",
+		confirmButtonColor: "#4F8A10", 
+		closeOnConfirm: false,
+		html:true
+		},
+		function(){
+			//redirect('<?php echo base_url() ;?>index.php/asms/home/retailer_request','refresh');
+		    window.location.href = '<?php echo base_url() ;?>index.php/asms/admin_index_controller/display_subscribers';
+		});
+}
+
+if(sendmail_to_all_subscriber=='sendmail_to_all_subscriber')
+{
+	swal({
+		title: "Done",
+		text: "<b>Sent mail to all subscribers !! </b>",
+		type: "success",
+		confirmButtonColor: "#4F8A10", 
+		closeOnConfirm: false,
+		html:true
+		},
+		function(){
+			//redirect('<?php echo base_url() ;?>index.php/asms/home/retailer_request','refresh');
+		    window.location.href = '<?php echo base_url() ;?>index.php/asms/admin_index_controller/subscriber_message';
+		});
+}
+
+
+/*
+if(approved_message=='approved_message')
+{
+	swal({
+		title: "Success",
+		text: '<b> <?php echo $approved_retailer_shop_name ?> Request Approved !! </b>',
+		type: "success",
+		confirmButtonColor: "#4F8A10", 
+		closeOnConfirm: false,
+		html:true
+		},
+		function(){
+			//redirect('<?php echo base_url() ;?>index.php/asms/home/retailer_request','refresh');
+		    window.location.href = '<?php echo base_url() ;?>index.php/asms/admin_index_controller/admin_notifications';
+		});
+}
+*/
+
 
 
 /*

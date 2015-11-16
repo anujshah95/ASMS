@@ -12,11 +12,10 @@ class home extends CI_Controller
 	function __construct() 
 	{
 	    parent::__construct(); //check login, redirect if logged in or logging out
-	    $this->clear_cache(); //runs if not logging out or logged in
 	}
 
 	function index()
-	{
+	{	
 		$this->load->view('asms/asms_home.php',$this->load->view('asms/asms_home_header'));
 	}
 
@@ -75,12 +74,6 @@ class home extends CI_Controller
 			}
 	}
 
-   function clear_cache()
-    {
-        $this->output->set_header("Cache-Control: no-store, no-cache, must-revalidate, no-transform, max-age=0, post-check=0, pre-check=0");
-        $this->output->set_header("Pragma: no-cache");
-    }
-
 	function logout()
 	{
 //	    print_r($this->session->userdata('session_data'));
@@ -125,6 +118,28 @@ class home extends CI_Controller
 		'status'=>'2'
 		);
 		//print_r($retailer_request_data);
+    
+		$rname=$this->input->post('rname');
+		$shop_name=$this->input->post('shop_name');
+		$shop_address=$this->input->post('shop_address');
+		$contact_number=$this->input->post('contact_number');
+		$other_number=$this->input->post('other_number');
+		$email_id_retailer_request=$this->input->post('email_id');
+		$vat=$this->input->post('vat');
+		$vat_date=$this->input->post('vat_date');
+		$cst=$this->input->post('cst');
+		$cst_date=$this->input->post('cst_date');
+
+		$this->session->set_userdata('rname',$rname);  // Sets the retailer data session
+		$this->session->set_userdata('shop_name',$shop_name);
+		$this->session->set_userdata('shop_address',$shop_address);
+		$this->session->set_userdata('contact_number',$contact_number);
+		$this->session->set_userdata('other_number',$other_number);
+		$this->session->set_userdata('email_id',$email_id_retailer_request);
+		$this->session->set_userdata('vat',$vat);
+		$this->session->set_userdata('vat_date',$vat_date);
+		$this->session->set_userdata('cst',$cst);
+		$this->session->set_userdata('cst_date',$cst_date);
 
 		setcookie("rname",$this->input->post('rname'), time()+3600);
 		setcookie("shop_name",$this->input->post('shop_name'), time()+3600);
@@ -142,25 +157,28 @@ class home extends CI_Controller
 	
 	//	setcookie("rname","", time()-3600);
 
-
-		/*echo "<script>
-		     alert('Thank you for submitting retailer request under Shivani Enterprise .. We will reach you soon..!! ');
-			 window.location.href='index';
-			 </script>";
+		/*
+		echo "<script>
+	     alert('Thank you for submitting retailer request under Shivani Enterprise .. We will reach you soon..!! ');
+		 window.location.href='index';
+		</script>";
 		*/
-/*
+	}
 	
+	function retailer_request1_email()
+	{	
+       $rname = $this->session->userdata('rname'); //Retriving retailer data session
+       $shop_name = $this->session->userdata('shop_name');
+       $shop_address = $this->session->userdata('shop_address');
+       $contact_number = $this->session->userdata('contact_number');
+       $other_number = $this->session->userdata('other_number');
+       $email_id_retailer_request = $this->session->userdata('email_id');
+       $vat = $this->session->userdata('vat');
+       $vat_date = $this->session->userdata('vat_date');
+       $cst = $this->session->userdata('cst');
+       $cst_date = $this->session->userdata('cst_date');
+ 
 //-------------------------------------------Email sending to admin (shivanisurat09@gmail.com) from website------------------------------------
-		$rname=$this->input->post('rname');
-		$shop_name=$this->input->post('shop_name');
-		$shop_address=$this->input->post('shop_address');
-		$contact_number=$this->input->post('contact_number');
-		$other_number=$this->input->post('other_number');
-		$email_id_retailer_request=$this->input->post('email_id');
-		$vat=$this->input->post('vat');
-		$vat_date=$this->input->post('vat_date');
-		$cst=$this->input->post('cst');
-		$cst_date=$this->input->post('cst_date');
 
 		$this->load->library('email');
 		$this->email->set_newline("\r\n"); 
@@ -211,10 +229,27 @@ class home extends CI_Controller
 			"Shivani Enterprise"
 			);
 
+		$data['value']='retailer_request_success';
+		$this->load->view('asms/asms_sweet_alert',$data,$this->load->view('asms/asms_home_header'));
+
 		if($this->email->send())
 			echo "Successfully Sent An Email To : <b>".$rname." (".$email_id_retailer_request.")"."</b>";
 		else
-			show_error($this->email->print_debugger())."\n";*/
+			show_error($this->email->print_debugger())."\n";
+
+
+		$this->session->unset_userdata('rname');  // Remove the retailer data session
+		$this->session->unset_userdata('shop_name');
+		$this->session->unset_userdata('shop_address');
+		$this->session->unset_userdata('contact_number');
+		$this->session->unset_userdata('other_number');
+		$this->session->unset_userdata('email_id');
+		$this->session->unset_userdata('vat');
+		$this->session->unset_userdata('vat_date');
+		$this->session->unset_userdata('cst');
+		$this->session->unset_userdata('cst_date');
+
+		$this->session->sess_destroy();
 
 	}
 
@@ -304,6 +339,12 @@ class home extends CI_Controller
 	{
 		$this->load->model('/asms/asms_home_model');
 		
+		$sub_name=$this->input->post('name_sub');
+		$sub_email=$this->input->post('email_sub');
+
+		$this->session->set_userdata('sub_name',$sub_name);  // Sets the subscriber data session
+		$this->session->set_userdata('sub_email',$sub_email);
+
 		$subscriber_data=array(
 		'sub_name'=>$this->input->post('name_sub'),
 		'sub_email'=>$this->input->post('email_sub')
@@ -311,12 +352,41 @@ class home extends CI_Controller
 
 		$this->asms_home_model->subscribe_f($subscriber_data);
 
-		echo
-			"<script>
-				alert('Thank you for subscribing our newsletter..!! ');
-				window.location.href='index'; 
-			</script>";
+	}
 
+	function subscribe_email()
+	{
+      /* $sub_name = $this->session->userdata('sub_name'); //Retriving subscriber data session
+       $sub_email = $this->session->userdata('sub_email');
+                      
+//-------------------------------------------Email sending to subscriber from shivani enterprise--------------------------------------------------
+		$this->load->library('email');
+		$this->email->set_newline("\r\n"); 
+		$this->email->from('shivanisurat09@gmail.com','Shivani Enterprise');
+		$this->email->to($sub_email);
+		$this->email->subject('Subscriber Related');
+		$this->email->message('Hello '.$sub_name." ,"."\n\n".
+			"Good wishes and warm greetings !! "."\n\n".
+			"Someone (hopefully you) Subscribe to Shivani Enterprise"."\n".
+			"To learn more about Shivani Enterprise please visit www.shivanisurat.com"."\n\n".
+		
+			"Thanks & Regards ,"."\n".
+			"Shivani Enterprise"."\n\n\n"
+			);*/
+
+		$data['value']='subscriber_success';
+		$this->load->view('asms/asms_sweet_alert',$data,$this->load->view('asms/asms_home_header'));
+
+		/*if($this->email->send())
+			echo "Successfully Sent An Email To : <b>".$sub_name." ('From : ShivaniEnterprise')"."</b>";
+		else
+			show_error($this->email->print_debugger())."\n";
+
+		$this->session->unset_userdata('sub_email'); // Remove the subscriber data session
+		$this->session->unset_userdata('sub_name');
+		$this->session->sess_destroy();
+
+		//echo $this->session->userdata('sub_email');*/
 
 	}
 
@@ -404,4 +474,5 @@ class home extends CI_Controller
 		}
 	}
 }
+
 ?>

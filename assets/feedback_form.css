@@ -1,7 +1,7 @@
 .feedback
 {
 	position:fixed;
-	top:90px;
+	top:100px;
 	right:-1px;
 }
 
@@ -40,97 +40,42 @@
     overflow: hidden; 
 }
 
-.feedback input,
-.feedback textarea,
-.feedback select
+input,textarea,select
 {
 	text-align:center;
 	font-size:16px;
 	padding:5px;
 	border-width:3px;
-	/*border-radius:28px; */
+	border-radius:28px; 
  	border-color:#000000;
  	text-shadow:0px 0px 0px rgba(42,42,42,.75);
  	box-shadow: -3px -3px 0px 0px rgba(59,59,59,.75);
+ 	font-style:none;
  	font-weight:normal; 
  	font-family:monospace;
  	width: 350px;
 }
 
-.feedback input[type=reset],
-.feedback input[type=cancel],
-.feedback input[type=submit]
+input[type=submit],input[type=cancel],input[type=reset]
 {
  	width: 100px;
 }
 
-.feedback input.name
-{
+input.name{
 	background:white url("http://localhost/ci/assets/images/icons/user.png") no-repeat 10px 8px;
 }
 
-.feedback input.email
-{
+input.email{
 	background:white url("http://localhost/ci/assets/images/icons/email.png") no-repeat 10px 8px;
 }
 
-.feedback input.contact
-{
+input.contact{
 	background:white url("http://localhost/ci/assets/images/icons/contact.png") no-repeat 10px 8px;
 }
 
-.feedback textarea.message
-{
+textarea.message{
 	background:white url("http://localhost/ci/assets/images/icons/message.png") no-repeat 10px 8px;
 }
 
 
 .span:focus { outline:none; } 
-
-/* Asms Home CSS */
-
-.asms_home
-{
-	
-	display: inline-block;
-	
-}
-
-.asms_home input[type=submit]
-{
-	font-size:16px;
- 	font-weight:normal; 
- 	font-family:monospace;
-	border-width:1px;
- 	border-color:#000000;
- 	text-shadow:0px 0px 0px rgba(42,42,42,.75);
- 	box-shadow: -3px -3px 0px 0px rgba(59,59,59,.75);
- 	width: 200px;
- 	height: 45px;
-}
-
-.asms_home input
-{
-	text-align:center;
-	font-size:16px;
-	padding:10px;
-	border-width:1px;
-	/* border-radius:28px; */
- 	border-color:#000000;
- 	text-shadow:0px 0px 0px rgba(42,42,42,.75);
- 	box-shadow: -3px -3px 0px 0px rgba(59,59,59,.75);
- 	font-weight:normal; 
- 	font-family:monospace;
- 	width: 300px;
-}
-
-.asms_home input.name
-{
-	background:white url("http://localhost/ci/assets/images/icons/user.png") no-repeat 10px 8px;
-}
-
-.asms_home input.email
-{
-	background:white url("http://localhost/ci/assets/images/icons/email.png") no-repeat 10px 8px;
-}
-

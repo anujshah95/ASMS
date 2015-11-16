@@ -78,6 +78,11 @@ class admin_index_controller extends CI_Controller
 				"Shivani Enterprise"
 				);
 
+			$data['value']='approved_message';
+			$data1['shop_name']='approved_retailer_shop_name';
+			$this->load->view('asms/asms_sweet_alert',$data,$this->load->view('asms/asms_home_header'));
+
+
 			if($this->email->send())
 				echo "Successfully Sent An Email To <b> Retailer (".$rname.") Who Requested!! </b> <br>";
 			else
@@ -316,23 +321,53 @@ class admin_index_controller extends CI_Controller
 		$subject=$this->input->post('subject_sub');
 		$message=$this->input->post('message_sub');
 
-		$this->data[$result]=$this->asms_admin_model->send_message_subscriber();
-		echo $this->data[$result];
-		/*
+		$subscriber_message_data=array(
+			'subject'=>$subject,
+			'message'=>$message
+			);
+
+		$this->asms_admin_model->send_message_subscriber($subscriber_message_data);
+
+		$data['result']=$this->asms_admin_model->get_sub_emails();
+		//echo implode('<br>',$data['result']);
+		
+		/*$temp_emails=array('anuj.shah95@gmail.com','shivanisurat09@gmail.com','14030142063@sicsr.ac.in','shahanuj@aol.com');
+		print_r($temp_emails);*/
+		
 		$this->load->library('email');
 		$this->email->set_newline("\r\n"); 
 
 		$this->email->from('shivanisurat09@gmail.com','Shivani Enterprise');
-		$this->email->to($data);
+		$this->email->to('shivanisurat09@gmail.com');
+		$this->email->bcc($data['result']);
 		$this->email->subject($subject);
-		//$emailbody='<h3> Respected Admin , <br> New Retaier Request is Arrived </h3>';
 		$this->email->message($message);
 
+		$data['value']='sendmail_to_all_subscriber';
+		$this->load->view('asms/asms_sweet_alert',$data,$this->load->view('asms/admin/admin_home_header'));
+		
 		if($this->email->send())
-			echo "Successfully Sent An Email To <b> Admin (shivanisurat09@gmail.com) !! </b> <br>";
+			echo "Successfully Sent An Email To <b><br> ". implode('<br>',$data['result'])." </b> <br>";
 		else
 			show_error($this->email->print_debugger())."\n";
-		*/
+		
 	}
+
+	function display_subscribers()
+	{
+		$this->data['posts'] = $this->admin_crud_retailer_model->display_subscribers(); // calling Post model method getPosts()
+   		$this->load->view('/asms/admin/display_subscribers', $this->data,$this->load->view('asms/admin/admin_home_header'));
+	}
+
+	function delete_subscriber()
+	{	
+		$sub_id=$this->input->post('sub_id');
+		$this->admin_crud_retailer_model->delete_subscriber($sub_id);
+
+		$data['value']='delete_subscriber';
+		$this->load->view('asms/asms_sweet_alert',$data,$this->load->view('asms/admin/admin_home_header'));
+	}
+
 }
+
 ?>

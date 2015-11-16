@@ -16,13 +16,11 @@ class asms_home_model extends CI_Model
 		{
 			$data['value']='retailer_request_error';
 			$this->load->view('asms/asms_sweet_alert',$data,$this->load->view('asms/asms_home_header'));
-			
 		}
 
 		else
 		{
-			$data['value']='retailer_request_success';
-			$this->load->view('asms/asms_sweet_alert',$data,$this->load->view('asms/asms_home_header'));
+			redirect('index.php/asms/home/retailer_request1_email');
 		}
 
 		echo "<br>";
@@ -46,8 +44,18 @@ class asms_home_model extends CI_Model
 
 	function subscribe_f($subscriber_data)
 	{
-		$this->db->insert('tbl_Subscriber',$subscriber_data);
-		//echo mysql_error();
+		if(!$this->db->insert('tbl_Subscriber',$subscriber_data))
+		{
+			$data['value']='subscriber_error';
+			$this->load->view('asms/asms_sweet_alert',$data,$this->load->view('asms/asms_home_header'));
+		}
+		else
+		{
+			redirect('index.php/asms/home/subscribe_email');
+		}
+
+		echo "<br>";
+		echo mysql_error();
 	}
 	
 	function forgot_password_check_email()

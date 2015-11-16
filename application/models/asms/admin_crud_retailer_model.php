@@ -71,7 +71,8 @@ class admin_crud_retailer_model extends CI_Model
 
 	function display_approved_retailer()
 	{
-		$query=$this->db->get('tbl_Retailer_Login');
+		$this->db->where('status',1);
+		$query=$this->db->get('tbl_Retailer_Request');
 		return $query->result();
 	}
 
@@ -98,7 +99,6 @@ class admin_crud_retailer_model extends CI_Model
 	function display_products()
 	{
 		$query=$this->db->get('tbl_Products');
-
 		return $query->result();
 	}
 	
@@ -107,7 +107,18 @@ class admin_crud_retailer_model extends CI_Model
 
 	}
 
-	
+	function display_subscribers()
+	{
+		$query=$this->db->get('tbl_Subscriber');
+		return $query->result();
+	}
+
+	function delete_subscriber($sub_id)
+	{
+		$this->db->where('sub_id', $sub_id); 
+  		$this->db->delete('tbl_Subscriber');
+		return $this->db-> affected_rows() > 0;
+	}
 }
 
 ?>

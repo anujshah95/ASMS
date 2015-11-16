@@ -56,7 +56,7 @@
           <option value="retailer">Retailer </option>
         </select></td></tr>
     -->
-    <tr><td><div class="form-group">
+    <tr><td><div >
       <label for="login_type"><h5> User Type : </h5></label></td>
       <td> <select name="login_type" class="form-control">
           <option value = "admin" selected>  Admin  </option>

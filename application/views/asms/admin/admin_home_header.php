@@ -9,11 +9,13 @@
   <link rel="stylesheet" href="<?php echo base_url("assets/css/bootstrap.min.css"); ?>" /> <!-- Bootstrap Core CSS -->
   <link rel="stylesheet" href="<?php echo base_url("assets/css/business-casual.css"); ?>"> <!-- Custom CSS -->
   <!-- <link rel="stylesheet" href="<?php echo base_url("assets/css/simple-sidebar.css"); ?>" />-->
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/sweetalert-master/dist/sweetalert.css">
   
   <script src="<?php echo base_url(); ?>assets/jquery/jquery-1.11.3.min.js"></script>
   <script src="<?php echo base_url(); ?>assets/jquery/core.js"></script>
   <script src="<?php echo base_url(); ?>assets/js/jquery.js"></script>  <!-- jQuery -->
   <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script>  <!-- Bootstrap Core JavaScript -->
+  <script src="<?php echo base_url(); ?>assets/sweetalert-master/dist/sweetalert.min.js"></script> <!-- Sweetalert -->
  <!--
    <!--Google Font API's (Fonts) 
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" 
@@ -46,12 +48,11 @@
                 <nav id="bs-navbar" class="collapse navbar-collapse">              
                 <ul class="nav navbar-nav"> 
                     <li> <a href="<?php echo base_url(); ?>index.php/asms/admin_index_controller/admin_home">Home</a> </li>
-                    
-                    <li> <a href="<?php echo base_url(); ?>index.php/asms/admin_index_controller/products_gallery">Products Gallery</a> </li>
-                    
+                                        
                     <li class="dropdown">
                       <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Products <span class="caret"></span></a>
                         <ul class="dropdown-menu">
+                          <li> <a href="<?php echo base_url(); ?>index.php/asms/admin_index_controller/products_gallery">Products Gallery</a> </li>
                           <li><a href="<?php echo base_url(); ?>index.php/asms/admin_index_controller/products">Add Products</a></li>
                         </ul>
                     </li>
@@ -64,6 +65,13 @@
                         </ul>
                     </li>
 
+                    <li class="dropdown">
+                      <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Subscribers <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                          <li><a href="<?php echo base_url(); ?>index.php/asms/admin_index_controller/display_subscribers"> List Of Subscribers </a></li>
+                          <li><a href="<?php echo base_url(); ?>index.php/asms/admin_index_controller/subscriber_message"> Message </a></li>
+                        </ul>
+                    </li>
 
                     <li> <a href="<?php echo base_url(); ?>index.php/asms/admin_index_controller/search_by_date_report">Reports</a> </li>
                     <li><a href="#"><span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span></a></li>
@@ -77,7 +85,6 @@
                        <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                           <li><a href="<?php echo base_url(); ?>index.php/asms/home/logout"> Logout </a></li>
-                          <li><a href="<?php echo base_url(); ?>index.php/asms/admin_index_controller/subscriber_message"> Message </a></li>
                         </ul>
                     </li>
 

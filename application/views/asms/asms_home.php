@@ -58,34 +58,23 @@
             </div>
         </div>
         
-        <center>
         <form action="<?php echo base_url(); ?>index.php/asms/home/subscribe" method="POST" name="subscribe">
+        <center>
+        
         <div class="row">
-            <div class="box">
-                <div class="form-group col-md-12 col-xs-12">
+            <div class="box" centered>
                     <hr><h2 class="intro-text text-center">Subscribe To Our Newsletter</h2><hr>
-                    
-                    <div class="col-md-4 col-xs-2">
-                        <div class="input-group input-group-lg">
-                          <input type="text" name="name_sub" class="form-control" placeholder="Name..." size="100" required>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4 col-xs-12">
-                        <div class="input-group input-group-lg">
-                          <input type="email" name="email_sub" class="form-control" placeholder="Email address..." size="100`" required>
-                        </div>
-                    </div>
-                    
-                        <input type="submit" name="submit_sub" class="btn btn-success btn-lg" value="Subscribe !"> 
-
+                    <div class="asms_home">
+                        <input type="text" name="name_sub" class="name" placeholder="Name..." required>&nbsp;&nbsp;&nbsp;
+                        <input type="email" name="email_sub" class="email" placeholder="Email address..." required>&nbsp;&nbsp;&nbsp;
+                        <input type="submit" name="submit_sub" class="btn btn-success" value="Subscribe !!"> 
                     <!--<img class="img-responsive img-border img-left" src="<?php echo base_url("assets/images/intro-pic.jpg"); ?>" alt="">-->
-
-                </div>
+                    </div>
             </div>
         </div>
-        </form>
+        </div>
         </center>
+        </form>
 
     </div>
 

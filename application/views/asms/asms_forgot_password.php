@@ -44,8 +44,9 @@
   -->
     <tr><td><div style="text-align:center" align="center">
       <input class="btn btn-success" type="submit" name="submit" id="submit" value="Reset Password" />
-      <input class="btn btn-danger" type="reset" value="Clear" />
-      <input class="btn btn-default" type="button" data-dismiss="modal" value="Close" onclick="javascript:window.location='<?php echo base_url() ;?>index.php/asms/home/index';">
+      <input class="btn btn-danger" type="reset" value="Clear" style="width:120px;" />
+      <input class="btn btn-default" type="button" data-dismiss="modal" value="Close" style="width:120px;"
+       onclick="javascript:window.location='<?php echo base_url() ;?>index.php/asms/home/index';">
     </div><br></td></tr>
     
     </table>

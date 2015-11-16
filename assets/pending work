@@ -29,7 +29,11 @@
 	reset button problem after setting cookies in input box
 	tbl_Retailer_Request related .... once retailer request is rejected .. how can he request again because mail already save in db
 		(solved it manually..disapproved user will contact owner via email or feedback)
-	feedback form proper design
+	feedback form proper design done
+	email sending problem after inserting sweetalert
+	sweetalert_page variable declaration sequence problem solve 
+	admin panel : subscriber list with delete functionality
+
 
 
 
@@ -44,13 +48,15 @@
 		insert se logo in every page title , home slideshow all company images
 	-list of all products with image and detail from tbl_Products 
 	-login password md5 complusory
-
 	-feedback and retailer request email in html
+	-unsubscribe ?
 	
+
 	-Subscriber full functionality
-	-already registered subscriber error message
-	
-	-asms home header file declare globally
+		new subsriber : register , email
+		already registered subscriber error message
+
+		admin section : create table or fields where msgs are stored when admin sends msg to all subscribers
 
 	-session destroy..previous page redirect problem
 	-retrieve retailer name / manufacture name from their shop name while retrieving value from session
@@ -74,6 +80,7 @@
 	-offers some exciting offers
 	-feedback to manufacture
 	-if retailer delete .. automatically record should delete from tbl_Login with respective rid
+	-subscriber delete confirmation msg (sweet alert)
 	-(Menu :
 	Home (Some Content) ,
 	Products Gallery (add to cart to manufacture),
