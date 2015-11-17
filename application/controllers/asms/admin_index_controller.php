@@ -328,28 +328,48 @@ class admin_index_controller extends CI_Controller
 
 		$this->asms_admin_model->send_message_subscriber($subscriber_message_data);
 
-		$data['result']=$this->asms_admin_model->get_sub_emails();
-		//echo implode('<br>',$data['result']);
+		$data[]=$this->asms_admin_model->get_sub_emails();
+		//print_r($data);
+		//echo "<br>";
+
+		$sub_emails = array_column($data,'sub_email');
+		//print_r($sub_emails[0]);
+		//echo "<br>";
+		$sub_names = array_column($data,'sub_name');
+		//print_r($sub_names[0]);
+
+		//echo implode('<br>',$sub_email_data['sub_email']);
+		
+		/*$sub_email['sub_email']=$this->asms_admin_model->get_sub_emails();
+		$sub_name['sub_name']=$this->asms_admin_model->get_sub_emails();
+		echo implode('<br>',$sub_name['sub_name']);
+		echo implode('<br>',$sub_email['sub_email']);*/
 		
 		/*$temp_emails=array('anuj.shah95@gmail.com','shivanisurat09@gmail.com','14030142063@sicsr.ac.in','shahanuj@aol.com');
 		print_r($temp_emails);*/
 		
-		$this->load->library('email');
-		$this->email->set_newline("\r\n"); 
+		$list=array($sub_names[0],$sub_emails[0]);
+		//print_r($list[1]);
+		foreach ($list as $sub_names[0] => $sub_emails[0])
+		{
+			$this->load->library('email');
+			$this->email->set_newline("\r\n"); 
+			$this->email->clear();
+			$this->email->from('shivanisurat09@gmail.com','Shivani Enterprise');
+			$this->email->to('shivanisurat09@gmail.com');
+			$this->email->bcc($sub_emails[0]);
+			$this->email->subject($subject);
+			$this->email->message('Hello '.$sub_names[0]."\n\n". $message);
 
-		$this->email->from('shivanisurat09@gmail.com','Shivani Enterprise');
-		$this->email->to('shivanisurat09@gmail.com');
-		$this->email->bcc($data['result']);
-		$this->email->subject($subject);
-		$this->email->message($message);
-
-		$data['value']='sendmail_to_all_subscriber';
-		$this->load->view('asms/asms_sweet_alert',$data,$this->load->view('asms/admin/admin_home_header'));
-		
-		if($this->email->send())
-			echo "Successfully Sent An Email To <b><br> ". implode('<br>',$data['result'])." </b> <br>";
-		else
-			show_error($this->email->print_debugger())."\n";
+			//$data['value']='sendmail_to_all_subscriber';
+			//$this->load->view('asms/asms_sweet_alert',$data,$this->load->view('asms/admin/admin_home_header'));
+			
+			if($this->email->send())
+				echo "Successfully Sent An Email To <b><br> ". implode('<br>',$data)." </b> <br>";
+			else
+				show_error($this->email->print_debugger())."\n";
+	
+		}
 		
 	}
 

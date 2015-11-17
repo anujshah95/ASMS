@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
  <header>
+  <title>Shivani Enterprise</title>
   
   <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/asms_css.css"> <!-- CSS For Home Page -->
   <link rel="stylesheet" href="<?php echo base_url("assets/css/bootstrap.min.css"); ?>" /> <!-- Bootstrap Core CSS -->
   <link rel="stylesheet" href="<?php echo base_url("assets/css/business-casual.css"); ?>"> <!-- Custom CSS -->
   <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/sweetalert-master/dist/sweetalert.css">
-  
+
+
   <script src="<?php echo base_url(); ?>assets/jquery/jquery-1.11.3.min.js"></script>
   <script src="<?php echo base_url(); ?>assets/jquery/core.js"></script>
   <script src="<?php echo base_url(); ?>assets/js/jquery.js"></script>  <!-- jQuery -->
@@ -18,7 +20,6 @@
     rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" 
     rel="stylesheet" type="text/css">-->
-  
 
   </header>
 
@@ -107,10 +108,7 @@
 
       </div>
   </div>
-  </div>
-</form>
-</div>
-</div>
+
 </form>
 </body>
 </html>

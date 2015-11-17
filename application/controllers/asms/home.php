@@ -14,6 +14,11 @@ class home extends CI_Controller
 	    parent::__construct(); //check login, redirect if logged in or logging out
 	}
 
+	function preloader()
+	{
+		$this->load->view('asms/asms_preloader');
+	}
+
 	function index()
 	{	
 		$this->load->view('asms/asms_home.php',$this->load->view('asms/asms_home_header'));

@@ -33,6 +33,10 @@
 	email sending problem after inserting sweetalert
 	sweetalert_page variable declaration sequence problem solve 
 	admin panel : subscriber list with delete functionality
+	Subscriber full functionality
+		new subsriber : register , email
+		already registered subscriber error message
+	preloader done successfully
 
 
 
@@ -44,27 +48,33 @@
 
 1.	ASMS :
 	-about us proper content
-	-home page content , bg in all web pages , SE logo home page , designing like fastticket home page , same home page like fastticket,
-		insert se logo in every page title , home slideshow all company images
+	-home page :
+		home page content
+		bg in all web pages
+		SE logo home page
+		same home page like fastticket,
+		insert se logo in every page title
+		home slideshow all company hd images
 	-list of all products with image and detail from tbl_Products 
 	-login password md5 complusory
 	-feedback and retailer request email in html
 	-unsubscribe ?
-	
+	-email validator API
+	-Catptcha code	
 
-	-Subscriber full functionality
-		new subsriber : register , email
-		already registered subscriber error message
-
-		admin section : create table or fields where msgs are stored when admin sends msg to all subscribers
+	-preloader animation
+		plain message after preload and before redirecting to page
+		loading gif or css
+	-admin section : create table or fields where msgs are stored when admin sends msg to all subscribers
+		with attach files and name
 
 	-session destroy..previous page redirect problem
-	-retrieve retailer name / manufacture name from their shop name while retrieving value from session
+	-retrieve retailer name / manufacture name from their shop name while retrieving value from session 
+		to display on their home page
 
 	-forgot password with email and update in tbl_Login table
 
-	-email validator API
-	-Catptcha code
+
 
 2. Admin : 
 	-change pwd

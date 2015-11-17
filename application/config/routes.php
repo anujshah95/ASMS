@@ -38,7 +38,7 @@
 |
 */
 
-$route['default_controller'] = "asms/home";
+$route['default_controller'] = "asms/home/preloader";
 $route['404_override'] = '';
 
 
