@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
-
+ <header>
+  <title>Sweet Alert</title>
+  
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/sweetalert-master/dist/sweetalert.css">
+  <script src="<?php echo base_url(); ?>assets/sweetalert-master/dist/sweetalert.min.js"></script> <!-- Sweetalert -->
 
 <script type="text/javascript">
 

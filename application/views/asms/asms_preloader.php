@@ -26,6 +26,7 @@
 	    position: relative;
 	    z-index: 10001;
 	    padding-top: 100px;
+
 	  }
 
 	  .bottom-header{
@@ -35,35 +36,56 @@
 	    max-width: 978px;
 	    position: relative;
 	    z-index: 10001;
-	    padding-top: 270px;
+	    padding-top: 50px;
 	  }
+
+	  .redirecting{
+	    text-align: center;
+	    margin: 0 auto 50px auto;
+	    width: 80%;
+	    max-width: 978px;
+	    position: relative;
+	    z-index: 101;
+	   	padding-top: 150px;
+	  }
+
 	 </style>
 
 </head>
 
 <body>
+
  	<div class="entry-header">
- 		<h1 disable>Welcome to Shivani Enterprise</h1>
+ 		<h1>Welcome to Shivani Enterprise</h1>
  	</div>
 
-	<div class="bottom-header">
-		<h1> Loading Please Wait .. </h1>
+	<div class="redirecting">
+		<div class="cssload-loader"><h2>Redirecting</h2></div>
 	</div>
+
+ 	<div class="bottom-header">
+ 		<h1>Please Wait ... </h1>
+ 	</div>
 
  	<script type="text/javaScript">
 
-		$(document).ready(function() {
-			setTimeout(function(){
+		$(document).ready(function()
+		{
+			setTimeout(function()
+			{
 			$('body').addClass('loaded');
-			$('h1').css('color','#222222');
+			//$('h1').css('color','white');
+			$('h1').hide();
 			}, 3000);	
 		});
 
-		$(document).ready(function() {
-			setTimeout(function(){	
+		$(document).ready(function()
+		{
+			setTimeout(function()
+			{	
 			window.location='<?php echo base_url() ;?>index.php/asms/home/index'; 
-			}, 4000);	
-		});	
+			}, 5500);	
+		});
 
 	</script>
 

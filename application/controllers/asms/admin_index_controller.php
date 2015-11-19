@@ -1,6 +1,5 @@
 <?php
 
-
 class admin_index_controller extends CI_Controller
 {
 	
@@ -10,43 +9,66 @@ class admin_index_controller extends CI_Controller
 		$this->load->model('/asms/admin_crud_retailer_model');
 	}
 
-	function admin_login()
-	{
-		$this->load->view('/asms/admin/admin_index',$this->load->view('asms/admin/admin_home_header'));
-	}
-
-	function admin_home()
-	{
+	function is_logged_in()
+   	{	
 		$this->output->set_header('Last-Modified:'.gmdate('D, d M Y H:i:s').'GMT');
 		$this->output->set_header('Cache-Control: no-store, no-cache, must-revalidate');
 		$this->output->set_header('Cache-Control: post-check=0, pre-check=0',false);
 		$this->output->set_header('Pragma: no-cache');
 
-		if(($this->session->userdata('session_data')==TRUE))
+		if(($this->session->userdata('session_data')==FALSE))
+		{
+			$data['value']='logout_error';
+			$this->load->view('asms/asms_sweet_alert',$data);
+	    }
+	}
+
+	function admin_home()
+	{
+		if (!$this->is_logged_in())
 		{
 			$this->load->view('asms/admin/admin_home',$this->load->view('asms/admin/admin_home_header'));
 		}
+
+		/*$this->output->set_header('Last-Modified:'.gmdate('D, d M Y H:i:s').'GMT');
+		$this->output->set_header('Cache-Control: no-store, no-cache, must-revalidate');
+		$this->output->set_header('Cache-Control: post-check=0, pre-check=0',false);
+		$this->output->set_header('Pragma: no-cache');
+
+		if($this->session->userdata('session_data')==TRUE)
+		{			
+			$this->load->view('asms/admin/admin_home',$this->load->view('asms/admin/admin_home_header'));
+		}
+
 		else
 		{
 			$data['value']='logout_error';
 			$this->load->view('asms/asms_sweet_alert',$data,$this->load->view('asms/asms_home_header'));
 			//$this->load->view('asms/asms_home.php',$this->load->view('asms/asms_home_header'));
-		}
+		}*/
 	}
 
 	function products_gallery()
 	{
-		$this->load->view('asms/admin/product_gallery',$this->load->view('asms/admin/admin_home_header'));
+		if (!$this->is_logged_in())
+		{
+			$this->load->view('asms/admin/product_gallery',$this->load->view('asms/admin/admin_home_header'));
+		}
 	}
 
 	function admin_notifications()
 	{
-		$this->data['posts'] = $this->admin_crud_retailer_model->display_retailer_request(); // calling Post model method getPosts()   		
-   		$this->load->view('/asms/admin/admin_notifications',$this->data,$this->load->view('asms/admin/admin_home_header'));
+		if (!$this->is_logged_in())
+		{
+			$this->data['posts'] = $this->admin_crud_retailer_model->display_retailer_request(); // calling Post model method getPosts()   		
+   			$this->load->view('/asms/admin/admin_notifications',$this->data,$this->load->view('asms/admin/admin_home_header'));
+   		}
 	}
 
 	function disapprove_request()
 	{
+		if (!$this->is_logged_in())
+		{
 		if($this->input->post('disapprove'))
 		{
 			$disapprove=$this->input->post('disapprove');
@@ -166,15 +188,21 @@ class admin_index_controller extends CI_Controller
 		{
 
 		}
+		}
 	}
 
 	function add_retailer()
 	{
-		$this->load->view('/asms/admin/add_retailer',$this->load->view('asms/admin/admin_home_header'));
+		if (!$this->is_logged_in())
+		{
+			$this->load->view('/asms/admin/add_retailer',$this->load->view('asms/admin/admin_home_header'));
+		}
 	}
 
 	function admin_add_retailer()
 	{
+		if (!$this->is_logged_in())
+		{
 		$retailer_data=array(
 			'rname'=>$this->input->post('rname'),
 			'shop_name'=>$this->input->post('shop_name'),
@@ -197,10 +225,13 @@ class admin_index_controller extends CI_Controller
 		     alert('Succesfully Added New Retailer ..!! ');
 		     window.location.href='add_retailer';  
 			 </script>";
+		}
 	}
 
 	function update_retailer()
 	{
+		if (!$this->is_logged_in())
+		{
 		$update_retailer_data=array(
 			'rid'=>$this->input->post('rid'),
 			'rname'=>$this->input->post('rname'),
@@ -222,28 +253,35 @@ class admin_index_controller extends CI_Controller
 		     alert('Succesfully Updated Retailer Information..!! ');
 		     window.location.href='display_retailer';  
 			 </script>";
+		}
 	}
 
 	function admin_update_retailer($id)
 	{
+		if (!$this->is_logged_in())
+		{
 		$rid=$id;
 		//echo $rid;
 		$temp['posts']  = $this->admin_crud_retailer_model->update_retailer_s($rid);	
 		
 		$this->load->view('/asms/admin/update_retailer', $temp,$this->load->view('asms/admin/admin_home_header'));
-
+		}
 	}
 
 	function display_retailer()
 	{
+		if (!$this->is_logged_in())
+		{
 		//$this->load->model->('admin_add_retailer');
 		$this->data['posts'] = $this->admin_crud_retailer_model->display_approved_retailer(); // calling Post model method getPosts()
    		$this->load->view('/asms/admin/display_retailer', $this->data,$this->load->view('asms/admin/admin_home_header'));
+   		}
 	}
 
 	function delete_retailer()
 	{
-
+		if (!$this->is_logged_in())
+		{	
 		$data=$this->input->post('msg');
 		
 		$this->admin_crud_retailer_model->delete_retailer($data);
@@ -253,16 +291,21 @@ class admin_index_controller extends CI_Controller
 		alert('Succesfully Deleted Retailer..!! ');
 		window.location.href='display_retailer';  
 		</script>";
-
+		}
 	}
 
 	function products()
 	{
-		$this->load->view('asms/admin/add_products.php',$this->load->view('asms/admin/admin_home_header'));
+		if (!$this->is_logged_in())
+		{
+			$this->load->view('asms/admin/add_products.php',$this->load->view('asms/admin/admin_home_header'));
+		}
 	}
 
 	function add_products()
 	{
+		if (!$this->is_logged_in())
+		{
 		$img_file =$this->input->post('image_url');
 
 		// Read image path, convert to base64 encoding
@@ -285,18 +328,23 @@ class admin_index_controller extends CI_Controller
 			 </script>";
 	
 		redirect('index.php/asms/admin_index_controller/admin_home');
-
+		}	
 	}
 
 	function display_products()
 	{
+		if (!$this->is_logged_in())
+		{
 		$this->data['posts'] = $this->admin_crud_retailer_model->display_products();
    	
    		$this->load->view('/asms/admin/display_products', $this->data);
+   		}
 	}
 
 	function search_by_date_report()
 	{
+		if (!$this->is_logged_in())
+		{
 		$this->load->model('asms/admin_search_by_date_model');
 
 		$search_by_date_data=array(
@@ -308,84 +356,148 @@ class admin_index_controller extends CI_Controller
 		$this->admin_search_by_date_model->admin_search_by_date_model_f($search_by_date_data);
 		$search_by_date_data['products']=$this->admin_search_by_date_model->admin_search_by_date_model_f($search_by_date_data);
 		$this->load->view('/asms/admin/admin_search_by_date',$search_by_date_data,$this->load->view('asms/admin/admin_home_header'));
+		}
 	}
+
+
 	function subscriber_message()
 	{
-		$this->load->view('asms/admin/subscriber_message',$this->load->view('asms/admin/admin_home_header'));
+		if (!$this->is_logged_in())
+		{
+			$this->load->view('asms/admin/subscriber_message',$this->load->view('asms/admin/admin_home_header'));
+		}
 	}
 
 	function subscriber_message1()
 	{
+		if (!$this->is_logged_in())
+		{
 		$this->load->model('asms/asms_admin_model');
 
 		$subject=$this->input->post('subject_sub');
 		$message=$this->input->post('message_sub');
+		$uploadFile=$this->input->post('uploadFile');
 
 		$subscriber_message_data=array(
 			'subject'=>$subject,
-			'message'=>$message
+			'message'=>$message,
+			'file'=>$uploadFile
 			);
 
 		$this->asms_admin_model->send_message_subscriber($subscriber_message_data);
 
 		$data[]=$this->asms_admin_model->get_sub_emails();
-		//print_r($data);
-		//echo "<br>";
-
 		$sub_emails = array_column($data,'sub_email');
 		//print_r($sub_emails[0]);
-		//echo "<br>";
 		$sub_names = array_column($data,'sub_name');
 		//print_r($sub_names[0]);
-
-		//echo implode('<br>',$sub_email_data['sub_email']);
 		
-		/*$sub_email['sub_email']=$this->asms_admin_model->get_sub_emails();
-		$sub_name['sub_name']=$this->asms_admin_model->get_sub_emails();
-		echo implode('<br>',$sub_name['sub_name']);
-		echo implode('<br>',$sub_email['sub_email']);*/
+		//echo implode('<br>',$sub_emails[0]);		
 		
 		/*$temp_emails=array('anuj.shah95@gmail.com','shivanisurat09@gmail.com','14030142063@sicsr.ac.in','shahanuj@aol.com');
 		print_r($temp_emails);*/
 		
-		$list=array($sub_names[0],$sub_emails[0]);
-		//print_r($list[1]);
-		foreach ($list as $sub_names[0] => $sub_emails[0])
-		{
+		//$list=array($sub_names[0],$sub_emails[0]);
+
+			//foreach ($list as $sub_names[0] => $sub_emails[0]){
 			$this->load->library('email');
 			$this->email->set_newline("\r\n"); 
-			$this->email->clear();
+
 			$this->email->from('shivanisurat09@gmail.com','Shivani Enterprise');
 			$this->email->to('shivanisurat09@gmail.com');
 			$this->email->bcc($sub_emails[0]);
 			$this->email->subject($subject);
-			$this->email->message('Hello '.$sub_names[0]."\n\n". $message);
+			$this->email->message('Hello '."\n\n". $message);
+
+    		$path=$this->config->item('server_root');
+    		$file=$path . '/ci/assets/attachments/';
+  
+            $config['upload_path'] = './uploads/';
+            $config['allowed_types'] = 'gif|jpg|png';
+            $config['max_size'] = '100000';
+            $config['max_width']  = '1024';
+            $config['max_height']  = '768';
+
+            $this->load->library('upload', $config);
+
+
+		if ( ! $this->upload->do_upload())
+		{
+			$error = array('error' => $this->upload->display_errors());
+
+			//$this->load->view('upload_form', $error);
+		}
+		else
+		{
+			$data = array('upload_data' => $this->upload->data());
+
+			$this->load->view('upload_success', $data);
+		}
+
+
+            //$this->upload->do_upload($uploadFile);
+            $upload_data = $this->upload->data();
+             
+            $this->email->attach($upload_data[$file]);
+
+			//$this->email->attach($file);
+
+
+		    /*$config['upload_path'] = './uploads/';
+    		$config['allowed_types'] = 'gif|jpg|png';
+    		$config['max_size'] = '100';
+    		$config['max_width']  = '1024';
+    		$config['max_height']  = '768';*/
+
+
+
+    		//$this->load->library('upload', $config);
+
+    		//$this->upload->do_upload($uploadFile);
+    		//$upload_data = $this->upload->data();
+            //$this->email->attach($upload_data['/var/www/html/ci/assets/attachments']);
+
+    		/*if ( ! $this->upload->do_upload())
+    		{
+    			$error = array('error' => $this->upload->display_errors());
+		    }
+    		else
+    		{*/
+        	//$data = array('upload_data' => $this->upload->data());
+
+			  
+			//$this->upload->do_upload('attachment');
+             
 
 			//$data['value']='sendmail_to_all_subscriber';
 			//$this->load->view('asms/asms_sweet_alert',$data,$this->load->view('asms/admin/admin_home_header'));
 			
 			if($this->email->send())
-				echo "Successfully Sent An Email To <b><br> ". implode('<br>',$data)." </b> <br>";
+				echo "Successfully Sent An Email To <b><br> ". implode('<br>',$sub_emails[0])." </b> <br>";
 			else
 				show_error($this->email->print_debugger())."\n";
-	
-		}
-		
+		}		
 	}
 
 	function display_subscribers()
 	{
-		$this->data['posts'] = $this->admin_crud_retailer_model->display_subscribers(); // calling Post model method getPosts()
-   		$this->load->view('/asms/admin/display_subscribers', $this->data,$this->load->view('asms/admin/admin_home_header'));
+		if (!$this->is_logged_in())
+		{
+			$this->data['posts'] = $this->admin_crud_retailer_model->display_subscribers(); // calling Post model method getPosts()
+   			$this->load->view('/asms/admin/display_subscribers', $this->data,$this->load->view('asms/admin/admin_home_header'));
+   		}
 	}
 
 	function delete_subscriber()
 	{	
-		$sub_id=$this->input->post('sub_id');
-		$this->admin_crud_retailer_model->delete_subscriber($sub_id);
+		if (!$this->is_logged_in())
+		{
+			$sub_id=$this->input->post('sub_id');
+			$this->admin_crud_retailer_model->delete_subscriber($sub_id);
 
-		$data['value']='delete_subscriber';
-		$this->load->view('asms/asms_sweet_alert',$data,$this->load->view('asms/admin/admin_home_header'));
+			$data['value']='delete_subscriber';
+			$this->load->view('asms/asms_sweet_alert',$data,$this->load->view('asms/admin/admin_home_header'));
+		}
 	}
 
 }

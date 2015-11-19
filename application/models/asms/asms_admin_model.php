@@ -24,11 +24,10 @@ class asms_admin_model extends CI_Model
 				);*/
 			$sub_email[]=$row->sub_email;
 			$sub_name[]=$row->sub_name;
-
 		};
 		return array(
 			'sub_email'=>$sub_email,
-			'sub_name'=>$sub_name
+			'sub_name'=>$sub_name,
 			);
 		//return $results;
 	}

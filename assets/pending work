@@ -37,6 +37,13 @@
 		new subsriber : register , email
 		already registered subscriber error message
 	preloader done successfully
+	preloader animation 
+		plain message after preload and before redirecting to page
+		loading gif or css
+	session destroy..previous page redirect problem
+	forgot password with email and update in tbl_Login table
+
+
 
 
 
@@ -60,19 +67,20 @@
 	-feedback and retailer request email in html
 	-unsubscribe ?
 	-email validator API
-	-Catptcha code	
+	-Catptcha code : reCaptcha : through wappylizer
 
-	-preloader animation
-		plain message after preload and before redirecting to page
-		loading gif or css
-	-admin section : create table or fields where msgs are stored when admin sends msg to all subscribers
-		with attach files and name
+preloader,
+login,
+forgot pw, retailer,feedback,subscriber
 
-	-session destroy..previous page redirect problem
+	-at the time of inserting retailer request data check email in tbl_Login also
+	-forgot pw email.. add name in email while reseting pw
+	-subscriber : admin section : create table or fields where msgs are stored when admin sends msg to all subscribers
+		with attach files 
+
+
 	-retrieve retailer name / manufacture name from their shop name while retrieving value from session 
 		to display on their home page
-
-	-forgot password with email and update in tbl_Login table
 
 
 
@@ -101,7 +109,9 @@
 	)
 	-Notification part approve / disapprove(feedback , retailerrequest , order , retailer feedback )
 	-Edit and view Profile before Header
-	-Change password
+	-search functionality.. various places
+	-subsriber name while sending emails to all subscribers
+
 
 
 

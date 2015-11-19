@@ -16,10 +16,16 @@
 				<td><input type="text" name="subject_sub" class="form-control" required><br/></td>
 			</tr>
 			
-			<tr class="active"><td><h4><b>Message : </b></h4></td>
+			<tr class="active">
+				<td><h4><b>Message : </b></h4></td>
         		<td><textarea name="message_sub" class="form-control" rows="7" required></textarea><br/></td>
         	</tr>
 			
+			<tr class="active">
+				<td><h4><b>Upload File : </b></h4></td>
+				<td><input type="file" name="uploadFile"><br></td>
+			</tr>
+
 			<tr class="active" align="center">
 				<td colspan="100"><input type="submit" class="btn btn-success" style="width:100px" name="Submit"></td>
 			</tr>
