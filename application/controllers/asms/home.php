@@ -356,7 +356,6 @@ class home extends CI_Controller
 			);
 
 		$this->asms_home_model->subscribe_f($subscriber_data);
-
 	}
 
 	function subscribe_email()
@@ -400,6 +399,7 @@ class home extends CI_Controller
 		$this->load->view('/asms/asms_forgot_password',$this->load->view('asms/asms_home_header'));
 	}
 
+
 	function forgot_password1()
 	{	
 		$this->load->model('/asms/asms_home_model');
@@ -434,9 +434,7 @@ class home extends CI_Controller
 			$this->email->from('shivanisurat09@gmail.com','Reset Password');
 			$this->email->to($email_id);
 			$this->email->subject('Reset Password Related');
-			//$emailbody='<h3> Respected Admin , <br> New Retaier Request is Arrived </h3>';
-
-			$this->email->message('Hello '/*.$rname." ,"*/."\n\n".
+			$this->email->message("Hello ,"."\n\n".
 				"Good wishes and warm greetings !! "."\n\n".
 
 				"Congratulations , your password is successfully reset !!"."\n".
@@ -459,25 +457,23 @@ class home extends CI_Controller
 				 	window.location.href='login'; 
 				 </script>";
 			*/
+			
 			$data['value']='forgot_password_success';
 			$this->load->view('asms/asms_sweet_alert',$data,$this->load->view('asms/asms_home_header'));
-
-
 			//redirect('index.php/asms/home/login');
 		}
 
 		else
-		{
-		/*	echo "<script>
-			alert('We are sorry .. This Email address is not registered with our website!! ');
-			window.location.href='forgot_password'; 
-			</script>";
-		*/
-		$data['value']='forgot_password_error';
-		$this->load->view('asms/asms_sweet_alert',$data,$this->load->view('asms/asms_home_header'));
-
+			{
+			/*	echo "<script>
+				alert('We are sorry .. This Email address is not registered with our website!! ');
+				window.location.href='forgot_password'; 
+				</script>";
+			*/
+			$data['value']='forgot_password_error';
+			$this->load->view('asms/asms_sweet_alert',$data,$this->load->view('asms/asms_home_header'));
+			}
 		}
-	}
 }
 
 ?>

@@ -12,6 +12,28 @@ class asms_home_model extends CI_Model
 
 	function retailer_request_f($retailer_request_data)
 	{
+		$email_id=$retailer_request_data['email_id'];
+		$query= $this->db->select('*')->from('tbl_Login')->where('email_id',$email_id)->get();
+
+		if($query->num_rows==0) //echo "email id is not exist in login table means it is unique";
+			{
+				if($this->db->insert('tbl_Retailer_Request',$retailer_request_data))
+				redirect('index.php/asms/home/retailer_request1_email');
+			
+				else //echo "already exist in retailer request table";
+					{
+						$data['value']='retailer_request_error';
+						$this->load->view('asms/asms_sweet_alert',$data,$this->load->view('asms/asms_home_header'));						
+					}
+			}
+
+		else //echo "already exist in login table";
+		{
+			$data['value']='retailer_request_error';
+			$this->load->view('asms/asms_sweet_alert',$data,$this->load->view('asms/asms_home_header'));
+		}	
+
+		/* old method where data is only checked in Retailer Request table .. not in tbl_Login table
 		if(!$this->db->insert('tbl_Retailer_Request',$retailer_request_data))
 		{
 			$data['value']='retailer_request_error';
@@ -22,7 +44,7 @@ class asms_home_model extends CI_Model
 		{
 			redirect('index.php/asms/home/retailer_request1_email');
 		}
-
+		*/
 		echo "<br>";
 		echo mysql_error();
 	}
@@ -68,7 +90,6 @@ class asms_home_model extends CI_Model
 		{
 			return true;
 		}
-
 	}
 
 	function reset_password_f($reset_password_data,$email_id)

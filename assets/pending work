@@ -42,13 +42,7 @@
 		loading gif or css
 	session destroy..previous page redirect problem
 	forgot password with email and update in tbl_Login table
-
-
-
-
-
-
-
+	at the time of inserting retailer request data check email in tbl_Login also
 
 ----------------------------------------------------------------------------
 						Remaining :
@@ -69,18 +63,21 @@
 	-email validator API
 	-Catptcha code : reCaptcha : through wappylizer
 
-preloader,
 login,
-forgot pw, retailer,feedback,subscriber
+forgot pw,
+retailer,
 
-	-at the time of inserting retailer request data check email in tbl_Login also
+subscriber
+
 	-forgot pw email.. add name in email while reseting pw
-	-subscriber : admin section : create table or fields where msgs are stored when admin sends msg to all subscribers
-		with attach files 
-
-
+	
 	-retrieve retailer name / manufacture name from their shop name while retrieving value from session 
 		to display on their home page
+
+	-subscriber : admin section : create table or fields where msgs are stored when admin sends msg to all subscribers
+		with attach files 
+	
+
 
 
 
