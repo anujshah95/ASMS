@@ -373,18 +373,8 @@ class admin_index_controller extends CI_Controller
 		if (!$this->is_logged_in())
 		{
 			$this->load->model('asms/asms_admin_model');
-
 			$subject=$this->input->post('subject_sub');
 			$message=$this->input->post('message_sub');
-			$uploadFile=$this->input->post('uploadFile');
-
-			$subscriber_message_data=array(
-				'subject'=>$subject,
-				'message'=>$message,
-				'file'=>$uploadFile
-				);
-
-			$this->asms_admin_model->send_message_subscriber($subscriber_message_data);
 
 			$data[]=$this->asms_admin_model->get_sub_emails();
 			$sub_emails = array_column($data,'sub_email'); //print_r($sub_emails[0]);
@@ -397,21 +387,12 @@ class admin_index_controller extends CI_Controller
 			print_r($temp_emails);
 			*/
 			
-			//foreach ($list as $sub_names[0] => $sub_emails[0]){
-			$this->load->library('email');
-			$this->email->set_newline("\r\n"); 
-
-			$this->email->from('shivanisurat09@gmail.com','Shivani Enterprise');
-			$this->email->to('shivanisurat09@gmail.com');
-			$this->email->bcc($sub_emails[0]);
-			$this->email->subject($subject);
-			$this->email->message('Hello '."\n\n". $message);
 			//----------------------------To upload file------------------------------------
-	        $config['upload_path'] = './uploads/';
-	        $config['allowed_types'] = 'gif|jpg|png';
-	        $config['max_size'] = '100000';
-	      //$config['max_width']  = '1024';
-	      //$config['max_height']  = '768';
+		    $config['upload_path'] = './uploads/';
+		    $config['allowed_types'] = 'gif|jpg|png|jpeg|pdf|doc|xml';
+		    $config['max_size'] = '5000';
+		    //$config['max_width']  = '1024';
+		    //$config['max_height']  = '768';
 
 			$this->load->library('upload', $config);
 	        $this->upload->initialize($config);
@@ -419,29 +400,51 @@ class admin_index_controller extends CI_Controller
 			if (!$this->upload->do_upload('uploadFile'))
 			{
 				$error = array('error' => $this->upload->display_errors());
-				//echo "Error : ".print_r($error);
+				echo "Error : ".print_r($error);
+				$data['value']='attach_error';
+				$this->load->view('asms/asms_sweet_alert',$data,$this->load->view('asms/admin/admin_home_header'));
 			}
 			else
 			{
 				$data = array('upload_data' => $this->upload->data());
-				echo "Data : ".print_r($data);
-			}            
+				//echo "Data : ".print_r($data);
 
-			$upload_Data = $this->upload->data();
-			$pathToUploadedFile = $upload_Data['full_path'];
-			$this->email->attach($pathToUploadedFile);
+				//foreach ($list as $sub_names[0] => $sub_emails[0]){
+				$this->load->library('email');
+				$this->email->set_newline("\r\n"); 
 
-	    	/*$path=$this->config->item('server_root');
-	    	$file=$path . '/ci/assets/attachments/';*/
-	 
-			//$data['value']='sendmail_to_all_subscriber';
-			//$this->load->view('asms/asms_sweet_alert',$data,$this->load->view('asms/admin/admin_home_header'));
+				$this->email->from('shivanisurat09@gmail.com','Shivani Enterprise');
+				$this->email->to('shivanisurat09@gmail.com');
+				$this->email->bcc($sub_emails[0]);
+				$this->email->subject($subject);
+				$this->email->message('Hello '."\n\n". $message);
+
+				$upload_Data = $this->upload->data();
+				$file_name=$upload_Data['file_name'];
+				$pathToUploadedFile = $upload_Data['full_path'];
+				$this->email->attach($pathToUploadedFile);
+
+		    	//$path=$this->config->item('server_root');
+		    	//$file=$path . '/ci/assets/attachments/';
+		 
+				$data['value']='sendmail_to_all_subscriber';
+				$this->load->view('asms/asms_sweet_alert',$data,$this->load->view('asms/admin/admin_home_header'));
+					
+				if($this->email->send())
+					echo "Successfully Sent An Email To <b><br> ". implode('<br>',$sub_emails[0])." </b> <br>";
+				else
+					show_error($this->email->print_debugger())."\n";
+
+				// -----------------------Inserting subscriber data into tbl_Subscriber_Message database------------
 				
-			if($this->email->send())
-				echo "Successfully Sent An Email To <b><br> ". implode('<br>',$sub_emails[0])." </b> <br>";
-			else
-				show_error($this->email->print_debugger())."\n";
-				
+				$subscriber_message_data=array(
+					'subject'=>$subject,
+					'message'=>$message,
+					'file'=>$file_name."_".date('Y-m-d H:i:s')
+					);
+
+				$this->asms_admin_model->send_message_subscriber($subscriber_message_data);
+			}
 		}		
 	}
 

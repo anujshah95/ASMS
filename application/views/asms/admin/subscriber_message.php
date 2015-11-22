@@ -8,7 +8,7 @@
     <div class="col-md-10" style="text-align:center;margin-left:100px">
 		<form name="subscriber_message" method="POST" 
 		action="<?php echo base_url(); ?>index.php/asms/admin_index_controller/subscriber_message1" enctype="multipart/form-data">
-        	 <table  class="table table-striped">
+        	 <table  class="table table-striped" >
 			
 			<tr><th colspan="100" style="text-align:center"><h2>Send Messages To Subscriber</h2></th></tr>
 			
@@ -24,11 +24,11 @@
 			
 			<tr class="active">
 				<td><h4><b>Upload File : </b></h4></td>
-				<td><input type="file" name="uploadFile"><br></td>
+				<td><input type="file" name="uploadFile"> Allowed Format : gif,jpg,png,jpeg,pdf,doc,xml  .... Max Size 5 MB </td>
 			</tr>
 
 			<tr class="active" align="center">
-				<td colspan="100"><input type="submit" class="btn btn-success" style="width:100px" name="Submit"></td>
+				<td colspan="100"><input type="submit" class="btn btn-success" style="width:100px" name="Submit" value="Send"></td>
 			</tr>
 
    			</table>

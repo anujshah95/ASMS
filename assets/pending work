@@ -44,6 +44,8 @@
 	forgot password with email and update in tbl_Login table
 	at the time of inserting retailer request data check email in tbl_Login also
 	forgot pw email.. add name in email while reseting pw..through join query
+	subscriber : admin section : create table or fields where msgs are stored when admin sends msg to all subscribers
+		with attach files 
 
 ----------------------------------------------------------------------------
 						Remaining :
@@ -63,9 +65,6 @@
 	-unsubscribe ?
 	-email validator API
 	-Catptcha code : reCaptcha : through wappylizer
-
-	-subscriber : admin section : create table or fields where msgs are stored when admin sends msg to all subscribers
-		with attach files 
 
 
 2. Admin : 

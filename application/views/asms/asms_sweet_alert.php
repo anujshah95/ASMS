@@ -20,6 +20,7 @@ var subscriber_error='<?php echo $value; ?>'
 var subscriber_success='<?php echo $value; ?>'
 var delete_subscriber='<?php echo $value; ?>'
 var sendmail_to_all_subscriber='<?php echo $value; ?>'
+var attach_error='<?php echo $value; ?>'
 /*
 var approved_message='<?php echo value; ?>'
 var approved_retailer_shop_name='<?php echo approved_retailer_shop_name ?>'
@@ -199,6 +200,21 @@ if(sendmail_to_all_subscriber=='sendmail_to_all_subscriber')
 		});
 }
 
+if(attach_error=='attach_error')
+{
+	swal({
+		title: "Oops",
+		text: "<b>Attachment size and Format should be followe as per criteria </b>",
+		type: "error",
+		confirmButtonColor: "red", 
+		closeOnConfirm: false,
+		html:true
+		},
+		function(){
+			//redirect('<?php echo base_url() ;?>index.php/asms/home/retailer_request','refresh');
+		    window.location.href = '<?php echo base_url() ;?>index.php/asms/admin_index_controller/subscriber_message';
+		});
+}
 
 /*
 if(approved_message=='approved_message')
