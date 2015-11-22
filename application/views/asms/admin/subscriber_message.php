@@ -6,7 +6,8 @@
 <body>
 
     <div class="col-md-10" style="text-align:center;margin-left:100px">
-		<form name="subscriber_message" method="POST" action="<?php echo base_url(); ?>index.php/asms/admin_index_controller/subscriber_message1">
+		<form name="subscriber_message" method="POST" 
+		action="<?php echo base_url(); ?>index.php/asms/admin_index_controller/subscriber_message1" enctype="multipart/form-data">
         	 <table  class="table table-striped">
 			
 			<tr><th colspan="100" style="text-align:center"><h2>Send Messages To Subscriber</h2></th></tr>
@@ -33,8 +34,8 @@
    			</table>
    		</form>
    </div>
-<!--
 
+<!--
 	<form name="subscriber_message" method="POST" action="<?php echo base_url(); ?>index.php/asms/admin_index_controller/subscriber_message1">
 		<table  class="table table-striped">
 			<tr><th colspan="100" style="text-align:center">Send Messages To Subscriber</th></tr>
@@ -45,7 +46,8 @@
 
 			<tr class="active" align="center"><td colspan="100"><input type="submit" class="btn btn-success" name="Submit"></td></tr>
 		</table>
-	</form>-->
+	</form>
+-->
 	
 </body>
 </html>

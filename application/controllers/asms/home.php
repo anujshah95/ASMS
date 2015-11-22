@@ -154,7 +154,7 @@ class home extends CI_Controller
 		setcookie("email_id",$this->input->post('email_id'), time()+3600);
 		setcookie("vat",$this->input->post('vat'), time()+3600);
 		setcookie("vat_date",$this->input->post('vat_date'), time()+3600);
-		setcookie("cst",$this->input->post('cst_date'), time()+3600);
+		setcookie("cst",$this->input->post('cst'), time()+3600);
 		setcookie("cst_date",$this->input->post('cst_date'), time()+3600);
 
 
@@ -360,8 +360,8 @@ class home extends CI_Controller
 
 	function subscribe_email()
 	{
-      /* $sub_name = $this->session->userdata('sub_name'); //Retriving subscriber data session
-       $sub_email = $this->session->userdata('sub_email');
+      /*$sub_name = $this->session->userdata('sub_name'); //Retriving subscriber data session
+       	$sub_email = $this->session->userdata('sub_email');
                       
 //-------------------------------------------Email sending to subscriber from shivani enterprise--------------------------------------------------
 		$this->load->library('email');
@@ -376,7 +376,8 @@ class home extends CI_Controller
 		
 			"Thanks & Regards ,"."\n".
 			"Shivani Enterprise"."\n\n\n"
-			);*/
+			);
+		*/
 
 		$data['value']='subscriber_success';
 		$this->load->view('asms/asms_sweet_alert',$data,$this->load->view('asms/asms_home_header'));
@@ -400,17 +401,32 @@ class home extends CI_Controller
 	}
 
 
+	/*function forgot_password1()
+	{
+		$this->load->model('/asms/asms_home_model');
+		$email_id=$this->input->post('email_id');
+
+		$query=$this->asms_home_model->forgot_password_check_email();
+
+		$rname=$this->session->userdata('rname');
+
+		if($query)
+			echo "yes";
+		else
+			echo "no";
+	}*/
+
 	function forgot_password1()
 	{	
 		$this->load->model('/asms/asms_home_model');
 		$email_id=$this->input->post('email_id');
 
 		$query=$this->asms_home_model->forgot_password_check_email();
+		$rname=$this->session->userdata('rname');
 
 		if($query)
 		{
 			$email_id=$this->input->post('email_id');
-			$rname=$this->input->post('rname');
 
 			function generate_password( $length = 8 ) 
 			{
@@ -434,9 +450,8 @@ class home extends CI_Controller
 			$this->email->from('shivanisurat09@gmail.com','Reset Password');
 			$this->email->to($email_id);
 			$this->email->subject('Reset Password Related');
-			$this->email->message("Hello ,"."\n\n".
+			$this->email->message("Hello ".$rname." ,"."\n\n".
 				"Good wishes and warm greetings !! "."\n\n".
-
 				"Congratulations , your password is successfully reset !!"."\n".
 				"Please find your Login Credentials : "."\n\n".
 				"New Password : ".$password."\n\n".
@@ -447,7 +462,7 @@ class home extends CI_Controller
 				);
 
 			if($this->email->send())
-				echo "Successfully Sent An Email To <b> Retailer (".$rname.") Who Requested!! </b> <br>";
+				echo "Successfully Sent An Email To <b> Retailer (".$email_id.") Who Requested!! </b> <br>";
 			else
 				show_error($this->email->print_debugger())."\n";
 			//---------------------------------------------------------------------------------
@@ -473,7 +488,8 @@ class home extends CI_Controller
 			$data['value']='forgot_password_error';
 			$this->load->view('asms/asms_sweet_alert',$data,$this->load->view('asms/asms_home_header'));
 			}
-		}
+			$this->session->unset_userdata('rname');
+	}
 }
 
 ?>

@@ -43,6 +43,7 @@
 	session destroy..previous page redirect problem
 	forgot password with email and update in tbl_Login table
 	at the time of inserting retailer request data check email in tbl_Login also
+	forgot pw email.. add name in email while reseting pw..through join query
 
 ----------------------------------------------------------------------------
 						Remaining :
@@ -63,22 +64,8 @@
 	-email validator API
 	-Catptcha code : reCaptcha : through wappylizer
 
-login,
-forgot pw,
-retailer,
-
-subscriber
-
-	-forgot pw email.. add name in email while reseting pw
-	
-	-retrieve retailer name / manufacture name from their shop name while retrieving value from session 
-		to display on their home page
-
 	-subscriber : admin section : create table or fields where msgs are stored when admin sends msg to all subscribers
 		with attach files 
-	
-
-
 
 
 2. Admin : 
@@ -108,9 +95,8 @@ subscriber
 	-Edit and view Profile before Header
 	-search functionality.. various places
 	-subsriber name while sending emails to all subscribers
-
-
-
+	-retrieve retailer name / manufacture name from their shop name while retrieving value from session 
+		to display on their home page
 
 
 3. Retailer :

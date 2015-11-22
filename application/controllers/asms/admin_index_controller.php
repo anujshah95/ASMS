@@ -372,33 +372,31 @@ class admin_index_controller extends CI_Controller
 	{
 		if (!$this->is_logged_in())
 		{
-		$this->load->model('asms/asms_admin_model');
+			$this->load->model('asms/asms_admin_model');
 
-		$subject=$this->input->post('subject_sub');
-		$message=$this->input->post('message_sub');
-		$uploadFile=$this->input->post('uploadFile');
+			$subject=$this->input->post('subject_sub');
+			$message=$this->input->post('message_sub');
+			$uploadFile=$this->input->post('uploadFile');
 
-		$subscriber_message_data=array(
-			'subject'=>$subject,
-			'message'=>$message,
-			'file'=>$uploadFile
-			);
+			$subscriber_message_data=array(
+				'subject'=>$subject,
+				'message'=>$message,
+				'file'=>$uploadFile
+				);
 
-		$this->asms_admin_model->send_message_subscriber($subscriber_message_data);
+			$this->asms_admin_model->send_message_subscriber($subscriber_message_data);
 
-		$data[]=$this->asms_admin_model->get_sub_emails();
-		$sub_emails = array_column($data,'sub_email');
-		//print_r($sub_emails[0]);
-		$sub_names = array_column($data,'sub_name');
-		//print_r($sub_names[0]);
-		
-		//echo implode('<br>',$sub_emails[0]);		
-		
-		/*$temp_emails=array('anuj.shah95@gmail.com','shivanisurat09@gmail.com','14030142063@sicsr.ac.in','shahanuj@aol.com');
-		print_r($temp_emails);*/
-		
-		//$list=array($sub_names[0],$sub_emails[0]);
+			$data[]=$this->asms_admin_model->get_sub_emails();
+			$sub_emails = array_column($data,'sub_email'); //print_r($sub_emails[0]);
+			$sub_names = array_column($data,'sub_name');   //print_r($sub_names[0]);
 
+			//echo implode('<br>',$sub_emails[0]);		
+			
+			/*
+			$temp_emails=array('anuj.shah95@gmail.com','shivanisurat09@gmail.com','14030142063@sicsr.ac.in','shahanuj@aol.com');
+			print_r($temp_emails);
+			*/
+			
 			//foreach ($list as $sub_names[0] => $sub_emails[0]){
 			$this->load->library('email');
 			$this->email->set_newline("\r\n"); 
@@ -408,74 +406,42 @@ class admin_index_controller extends CI_Controller
 			$this->email->bcc($sub_emails[0]);
 			$this->email->subject($subject);
 			$this->email->message('Hello '."\n\n". $message);
+			//----------------------------To upload file------------------------------------
+	        $config['upload_path'] = './uploads/';
+	        $config['allowed_types'] = 'gif|jpg|png';
+	        $config['max_size'] = '100000';
+	      //$config['max_width']  = '1024';
+	      //$config['max_height']  = '768';
 
-    		$path=$this->config->item('server_root');
-    		$file=$path . '/ci/assets/attachments/';
-  
-            $config['upload_path'] = './uploads/';
-            $config['allowed_types'] = 'gif|jpg|png';
-            $config['max_size'] = '100000';
-            $config['max_width']  = '1024';
-            $config['max_height']  = '768';
+			$this->load->library('upload', $config);
+	        $this->upload->initialize($config);
 
-            $this->load->library('upload', $config);
+			if (!$this->upload->do_upload('uploadFile'))
+			{
+				$error = array('error' => $this->upload->display_errors());
+				//echo "Error : ".print_r($error);
+			}
+			else
+			{
+				$data = array('upload_data' => $this->upload->data());
+				echo "Data : ".print_r($data);
+			}            
 
+			$upload_Data = $this->upload->data();
+			$pathToUploadedFile = $upload_Data['full_path'];
+			$this->email->attach($pathToUploadedFile);
 
-		if ( ! $this->upload->do_upload())
-		{
-			$error = array('error' => $this->upload->display_errors());
-
-			//$this->load->view('upload_form', $error);
-		}
-		else
-		{
-			$data = array('upload_data' => $this->upload->data());
-
-			$this->load->view('upload_success', $data);
-		}
-
-
-            //$this->upload->do_upload($uploadFile);
-            $upload_data = $this->upload->data();
-             
-            $this->email->attach($upload_data[$file]);
-
-			//$this->email->attach($file);
-
-
-		    /*$config['upload_path'] = './uploads/';
-    		$config['allowed_types'] = 'gif|jpg|png';
-    		$config['max_size'] = '100';
-    		$config['max_width']  = '1024';
-    		$config['max_height']  = '768';*/
-
-
-
-    		//$this->load->library('upload', $config);
-
-    		//$this->upload->do_upload($uploadFile);
-    		//$upload_data = $this->upload->data();
-            //$this->email->attach($upload_data['/var/www/html/ci/assets/attachments']);
-
-    		/*if ( ! $this->upload->do_upload())
-    		{
-    			$error = array('error' => $this->upload->display_errors());
-		    }
-    		else
-    		{*/
-        	//$data = array('upload_data' => $this->upload->data());
-
-			  
-			//$this->upload->do_upload('attachment');
-             
-
+	    	/*$path=$this->config->item('server_root');
+	    	$file=$path . '/ci/assets/attachments/';*/
+	 
 			//$data['value']='sendmail_to_all_subscriber';
 			//$this->load->view('asms/asms_sweet_alert',$data,$this->load->view('asms/admin/admin_home_header'));
-			
+				
 			if($this->email->send())
 				echo "Successfully Sent An Email To <b><br> ". implode('<br>',$sub_emails[0])." </b> <br>";
 			else
 				show_error($this->email->print_debugger())."\n";
+				
 		}		
 	}
 
