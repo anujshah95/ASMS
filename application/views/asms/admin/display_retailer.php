@@ -1,7 +1,7 @@
 <html>  
    <head>  
       <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />  
-      <title>Untitled Document</title> 
+      <title>Display Retailers</title> 
       
       <script language="javascript">
          function update(rid){
@@ -59,23 +59,6 @@
    </table>
    </form>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <!-- sIMPLE mETHOD
 

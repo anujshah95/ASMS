@@ -38,16 +38,22 @@ class home extends CI_Controller
 
 		if($query)
 		{
-			$login_data=array(
+			//print_r($query);
+			
+			//old method
+			/*$login_data=array(
 			'uname'=>$this->input->post('uname'),
 			'is_logged_in'=>true
-			);
+			);*/
+
+			$login_data=$query;
+			//echo $login_data[0]->email_id;
 
 			$this->session->set_userdata('session_data',$login_data); // Sets the session
 
 			if($type=='admin')
 			{
-				redirect('index.php/asms/admin_index_controller/admin_home');
+				redirect('index.php/asms/admin_index_controller/admin_home');				
 			}
 
 			elseif ($type=='manufacture')
@@ -72,8 +78,8 @@ class home extends CI_Controller
 				"<script>
 			     	alert('Invalid Username or Password..!! ');
 				 	window.location.href='login'; 
-				 </script>";
-				*/
+				 </script>";*/
+				
 				 $data['value']='login_error';
 				 $this->load->view('asms/asms_sweet_alert',$data,$this->load->view('asms/asms_home_header'));
 			}
@@ -360,7 +366,7 @@ class home extends CI_Controller
 
 	function subscribe_email()
 	{
-      /*$sub_name = $this->session->userdata('sub_name'); //Retriving subscriber data session
+      	$sub_name = $this->session->userdata('sub_name'); //Retriving subscriber data session
        	$sub_email = $this->session->userdata('sub_email');
                       
 //-------------------------------------------Email sending to subscriber from shivani enterprise--------------------------------------------------
@@ -377,12 +383,12 @@ class home extends CI_Controller
 			"Thanks & Regards ,"."\n".
 			"Shivani Enterprise"."\n\n\n"
 			);
-		*/
+		
 
 		$data['value']='subscriber_success';
 		$this->load->view('asms/asms_sweet_alert',$data,$this->load->view('asms/asms_home_header'));
 
-		/*if($this->email->send())
+		if($this->email->send())
 			echo "Successfully Sent An Email To : <b>".$sub_name." ('From : ShivaniEnterprise')"."</b>";
 		else
 			show_error($this->email->print_debugger())."\n";

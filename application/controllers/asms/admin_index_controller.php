@@ -469,6 +469,22 @@ class admin_index_controller extends CI_Controller
 		}
 	}
 
+	function admin_profile()
+	{
+		if (!$this->is_logged_in())
+		{
+			$this->load->view('asms/admin/admin_myprofile',$this->load->view('asms/admin/admin_home_header'));
+		}
+	}
+
+	function changePassword_admin()
+	{
+		if (!$this->is_logged_in())
+		{
+			$this->load->model('asms/asms_admin_model');
+			$this->asms_admin_model->changePassword();
+		}
+	}
 }
 
 ?>

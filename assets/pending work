@@ -1,6 +1,6 @@
 ----------------------------------------------------------------------------
 						Done :
-	
+ASMS
 	thankyou feedback message
 	category null values in feedback form
 	send email from feedback form ..both side
@@ -47,6 +47,12 @@
 	subscriber : admin section : create table or fields where msgs are stored when admin sends msg to all subscribers
 		with attach files 
 
+Admin :
+	-logout..session expire
+	-subscriber delete confirmation msg (sweet alert)
+	-change pwd
+	-profile
+
 ----------------------------------------------------------------------------
 						Remaining :
 
@@ -56,7 +62,7 @@
 		home page content
 		bg in all web pages
 		SE logo home page
-		same home page like fastticket,
+		same home page like ft,
 		insert se logo in every page title
 		home slideshow all company hd images
 	-list of all products with image and detail from tbl_Products 
@@ -68,20 +74,26 @@
 
 
 2. Admin : 
-	-change pwd
-	-logout..session expire
-	-profile
+	-incorrect change pw redirect to change pw page
+	-password mask
+	
 	-notification : feedback if possible
+	
+	-add retailer model - crud 
+	-if retailer delete .. automatically record should delete from tbl_Login with respective rid
+	
+	-manufacture - crud 
+
 	-reports..proper from table..filter by retailer , products , from and to)..with UI
-	-add retailer model
-	-menu : crud : UI
+	
 	-add and delete products 
 	-products gallery .. and add to cart and send to manufacture..send mail to both side
+
+	-menu : crud : UI
 	-admin home proper content
 	-offers some exciting offers
-	-feedback to manufacture
-	-if retailer delete .. automatically record should delete from tbl_Login with respective rid
-	-subscriber delete confirmation msg (sweet alert)
+	-message to manufacture
+	
 	-(Menu :
 	Home (Some Content) ,
 	Products Gallery (add to cart to manufacture),
@@ -90,6 +102,7 @@
 	Manufactures (view (list of MANU with details) , create , delete),
 	Reports(Retailer wise  Date wise) [which retailer , which product , which date]
 	)
+
 	-Notification part approve / disapprove(feedback , retailerrequest , order , retailer feedback )
 	-Edit and view Profile before Header
 	-search functionality.. various places

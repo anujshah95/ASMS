@@ -21,6 +21,8 @@ var subscriber_success='<?php echo $value; ?>'
 var delete_subscriber='<?php echo $value; ?>'
 var sendmail_to_all_subscriber='<?php echo $value; ?>'
 var attach_error='<?php echo $value; ?>'
+var changePassword_error='<?php echo $value; ?>'
+var changePassword_success='<?php echo $value; ?>'
 /*
 var approved_message='<?php echo value; ?>'
 var approved_retailer_shop_name='<?php echo approved_retailer_shop_name ?>'
@@ -213,6 +215,38 @@ if(attach_error=='attach_error')
 		function(){
 			//redirect('<?php echo base_url() ;?>index.php/asms/home/retailer_request','refresh');
 		    window.location.href = '<?php echo base_url() ;?>index.php/asms/admin_index_controller/subscriber_message';
+		});
+}
+
+
+if(changePassword_error=='changePassword_error')
+{
+		swal({
+		  title: "Oops",
+		  text: "<b>Incorrect Old Password</b>",
+		  type: "error",
+		  confirmButtonColor: "#DD6B55",
+		  closeOnConfirm: false,
+		  html:true
+		},
+		function(){
+		    window.location.href = '<?php echo base_url() ;?>index.php/asms/admin_index_controller/admin_profile/';
+		});
+}
+
+if(changePassword_success=='changePassword_success')
+{
+	swal({
+		title: "Done",
+		text: "<b>Successfully Changed Password !! </b>",
+		type: "success",
+		confirmButtonColor: "#4F8A10", 
+		closeOnConfirm: false,
+		html:true
+		},
+		function(){
+			//redirect('<?php echo base_url() ;?>index.php/asms/home/retailer_request','refresh');
+		    window.location.href = '<?php echo base_url() ;?>index.php/asms/admin_index_controller/admin_profile';
 		});
 }
 

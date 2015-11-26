@@ -1,28 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
- <header>
- <meta http-equiv="Cache-Control" content="no-cache" />
+  <header>
+    <title> Admin Panel </title>
+  
+      <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/asms_css.css"> <!-- CSS For Home Page -->
+      <link rel="stylesheet" href="<?php echo base_url("assets/css/bootstrap.min.css"); ?>" /> <!-- Bootstrap Core CSS -->
+      <link rel="stylesheet" href="<?php echo base_url("assets/css/business-casual.css"); ?>"> <!-- Custom CSS -->
+      <link rel="stylesheet" href="<?php echo base_url(); ?>assets/sweetalert-master/dist/sweetalert.css">
+      <!--<link rel="stylesheet" href="<?php echo base_url("assets/css/google-font-api.css"); ?>"> <!-- Google Font Api
+      <link rel="stylesheet" href="<?php echo base_url("assets/css/google-font-api1.css"); ?>"> <!-- Google Font Api
+      <!-- <link rel="stylesheet" href="<?php echo base_url("assets/css/simple-sidebar.css"); ?>" />-->
 
-  <title> Admin Panel </title>
-  
-  <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/asms_css.css"> <!-- CSS For Home Page -->
-  <link rel="stylesheet" href="<?php echo base_url("assets/css/bootstrap.min.css"); ?>" /> <!-- Bootstrap Core CSS -->
-  <link rel="stylesheet" href="<?php echo base_url("assets/css/business-casual.css"); ?>"> <!-- Custom CSS -->
-  <!-- <link rel="stylesheet" href="<?php echo base_url("assets/css/simple-sidebar.css"); ?>" />-->
-  <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/sweetalert-master/dist/sweetalert.css">
-  
-  <script src="<?php echo base_url(); ?>assets/jquery/jquery-1.11.3.min.js"></script>
-  <script src="<?php echo base_url(); ?>assets/jquery/core.js"></script>
-  <script src="<?php echo base_url(); ?>assets/js/jquery.js"></script>  <!-- jQuery -->
-  <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script>  <!-- Bootstrap Core JavaScript -->
-  <script src="<?php echo base_url(); ?>assets/sweetalert-master/dist/sweetalert.min.js"></script> <!-- Sweetalert -->
- <!--
-   <!--Google Font API's (Fonts) 
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" 
-  rel="stylesheet" type="text/css">
-  <link href="http://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" 
-  rel="stylesheet" type="text/css">
--->
+      <script src="<?php echo base_url(); ?>assets/jquery/jquery-1.11.3.min.js"></script>
+      <script src="<?php echo base_url(); ?>assets/jquery/core.js"></script>
+      <script src="<?php echo base_url(); ?>assets/js/jquery.js"></script>  <!-- jQuery -->
+      <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script>  <!-- Bootstrap Core JavaScript -->
+      <script src="<?php echo base_url(); ?>assets/sweetalert-master/dist/sweetalert.min.js"></script> <!-- Sweetalert -->
+
   </header>
 
 <body>
@@ -80,10 +74,12 @@
                       <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                        <?php 
                           $login_data = $this->session->userdata('session_data'); //Retriving session
-                          echo $login_data['uname']; //Print the logge in username
+                          if($login_data)
+                          echo $login_data[0]->uname; //Print the logged in username
                        ?>
                        <span class="caret"></span></a>
                         <ul class="dropdown-menu">
+                          <li><a href="<?php echo base_url(); ?>index.php/asms/admin_index_controller/admin_profile"> My Profile </a></li>
                           <li><a href="<?php echo base_url(); ?>index.php/asms/home/logout"> Logout </a></li>
                         </ul>
                     </li>

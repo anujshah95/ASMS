@@ -31,6 +31,39 @@ class asms_admin_model extends CI_Model
 			);
 		//return $results;
 	}
+
+	function myprofileDetails()
+	{
+		$query=$this->db->get('tbl_Login');
+		return $query->result();
+	}
+
+	function changePassword()
+	{
+		$login_data = $this->session->userdata('session_data'); //Retriving session
+		
+		$this->db->where('password',$this->input->post('oldPwd'));
+		$this->db->where('lid',$login_data[0]->lid);
+
+		$query=$this->db->get('tbl_Login');
+
+		if($query->num_rows==1)
+		{
+			$new_password=array(
+				'password'=>$this->input->post('newPwd')
+				);
+			$this->db->where('lid',$login_data[0]->lid);
+			$this->db->update('tbl_Login',$new_password);
+
+			$data['value']='changePassword_success';
+			$this->load->view('asms/asms_sweet_alert',$data,$this->load->view('asms/admin/admin_home_header'));
+		}
+		else
+		{
+			$data['value']='changePassword_error';
+			$this->load->view('asms/asms_sweet_alert',$data,$this->load->view('asms/admin/admin_home_header'));
+		}
+	}
 }  
 
 
